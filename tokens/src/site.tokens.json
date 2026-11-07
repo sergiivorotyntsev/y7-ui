@@ -1,0 +1,835 @@
+{
+  "$description": "Theme \"site\": Y7-WEBSITE Dispatch Board V2 (DESIGN.md). Controls sit on manifest paper; board-black is the inverse surface. Values from src/styles/variables.css --v2-* and theme.js v2.",
+  "color": {
+    "surface": {
+      "page": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9569,
+            0.9412,
+            0.9098
+          ],
+          "alpha": 1,
+          "hex": "#f4f0e8"
+        },
+        "$description": "Manifest paper"
+      },
+      "panel": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.9804,
+            0.9451
+          ],
+          "alpha": 1,
+          "hex": "#fffaf1"
+        },
+        "$description": "Card cream"
+      },
+      "raised": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9333,
+            0.9098,
+            0.8667
+          ],
+          "alpha": 1,
+          "hex": "#eee8dd"
+        },
+        "$description": "Paper deep"
+      },
+      "overlay": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.9804,
+            0.9451
+          ],
+          "alpha": 1,
+          "hex": "#fffaf1"
+        }
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0196,
+            0.0235,
+            0.0275
+          ],
+          "alpha": 1,
+          "hex": "#050607"
+        },
+        "$description": "Board black"
+      },
+      "inverse-panel": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0549,
+            0.0627,
+            0.0706
+          ],
+          "alpha": 1,
+          "hex": "#0e1012"
+        },
+        "$description": "Panel inside board"
+      }
+    },
+    "text": {
+      "primary": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0196,
+            0.0235,
+            0.0275
+          ],
+          "alpha": 1,
+          "hex": "#050607"
+        },
+        "$description": "Ink"
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.3608,
+            0.3451,
+            0.3176
+          ],
+          "alpha": 1,
+          "hex": "#5c5851"
+        },
+        "$description": "Ink muted"
+      },
+      "muted": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.3608,
+            0.3451,
+            0.3176
+          ],
+          "alpha": 1,
+          "hex": "#5c5851"
+        },
+        "$description": "Placeholders and \"Any date\" words (C4). Same value as secondary today; a separate token so it can drift later without touching components."
+      },
+      "link": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.6627,
+            0.0353,
+            0.0941
+          ],
+          "alpha": 1,
+          "hex": "#a90918"
+        },
+        "$description": "Red deep: 7:1 on paper"
+      },
+      "on-accent": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.9686,
+            0.9294
+          ],
+          "alpha": 1,
+          "hex": "#fff7ed"
+        }
+      },
+      "on-inverse": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.9686,
+            0.9294
+          ],
+          "alpha": 1,
+          "hex": "#fff7ed"
+        }
+      },
+      "on-inverse-secondary": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9098,
+            0.8784,
+            0.8275
+          ],
+          "alpha": 1,
+          "hex": "#e8e0d3"
+        }
+      },
+      "on-inverse-muted": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.6118,
+            0.6078,
+            0.5882
+          ],
+          "alpha": 1,
+          "hex": "#9c9b96"
+        }
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0196,
+            0.0235,
+            0.0275
+          ],
+          "alpha": 0.45,
+          "hex": "#050607"
+        }
+      }
+    },
+    "border": {
+      "subtle": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0196,
+            0.0235,
+            0.0275
+          ],
+          "alpha": 0.14,
+          "hex": "#050607"
+        },
+        "$description": "line-on-paper hairline"
+      },
+      "control": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0196,
+            0.0235,
+            0.0275
+          ],
+          "alpha": 0.28,
+          "hex": "#050607"
+        },
+        "$description": "Control edge on paper (DECISION: DESIGN.md has only the .14 hairline; .28 gives a field edge that reads as a field)"
+      },
+      "strong": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0196,
+            0.0235,
+            0.0275
+          ],
+          "alpha": 0.4,
+          "hex": "#050607"
+        }
+      },
+      "on-inverse": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            0.9686,
+            0.9294
+          ],
+          "alpha": 0.14,
+          "hex": "#fff7ed"
+        },
+        "$description": "line-on-dark"
+      }
+    },
+    "accent": {
+      "base": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8431,
+            0.0588,
+            0.1412
+          ],
+          "alpha": 1,
+          "hex": "#d70f24"
+        },
+        "$description": "Signal red. Signal Budget: max one red fill + two accents per viewport."
+      },
+      "hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.6627,
+            0.0353,
+            0.0941
+          ],
+          "alpha": 1,
+          "hex": "#a90918"
+        }
+      },
+      "deep": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.6627,
+            0.0353,
+            0.0941
+          ],
+          "alpha": 1,
+          "hex": "#a90918"
+        }
+      },
+      "on-inverse": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9373,
+            0.2275,
+            0.3059
+          ],
+          "alpha": 1,
+          "hex": "#ef3a4e"
+        },
+        "$description": "Body-size red on dark (contrast law)"
+      },
+      "tint": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9843,
+            0.9373,
+            0.9255
+          ],
+          "alpha": 1,
+          "hex": "#fbefec"
+        },
+        "$description": "Red tint wash"
+      },
+      "gradient": {
+        "$type": "string",
+        "$value": "linear-gradient(135deg, #d70f24, #a90918)",
+        "$description": "The ONLY legal gradient (DESIGN.md). Primary CTA fill on the site."
+      }
+    },
+    "focus": {
+      "ring": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8431,
+            0.0588,
+            0.1412
+          ],
+          "alpha": 1,
+          "hex": "#d70f24"
+        },
+        "$description": "Keyboard focus ring on paper (X2: 2px, offset 2). Red here is the site law; a field focused by the page on load shows a neutral ring until the person acts."
+      },
+      "ring-on-inverse": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9373,
+            0.2275,
+            0.3059
+          ],
+          "alpha": 1,
+          "hex": "#ef3a4e"
+        }
+      },
+      "ring-quiet": {
+        "$value": "{color.border.strong}",
+        "$description": "Neutral ring for a programmatic (on-load) focus"
+      }
+    },
+    "status": {
+      "done": {
+        "$description": "Green = done. Delivered, confirmed, paid.",
+        "fg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0588,
+              0.4314,
+              0.3373
+            ],
+            "alpha": 1,
+            "hex": "#0f6e56"
+          }
+        },
+        "bg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8824,
+              0.9608,
+              0.9333
+            ],
+            "alpha": 1,
+            "hex": "#e1f5ee"
+          }
+        },
+        "border": {
+          "$value": "{color.status.done.fg}"
+        }
+      },
+      "progress": {
+        "$description": "Blue = in progress or waiting on others.",
+        "fg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0784,
+              0.3922,
+              0.549
+            ],
+            "alpha": 1,
+            "hex": "#14648c"
+          }
+        },
+        "bg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.8902,
+              0.9333,
+              0.9608
+            ],
+            "alpha": 1,
+            "hex": "#e3eef5"
+          }
+        },
+        "border": {
+          "$value": "{color.status.progress.fg}"
+        }
+      },
+      "needs-you": {
+        "$description": "Amber = needs you. ALWAYS paired with the words of what to do (L1). The StatusChip and Banner enforce this.",
+        "fg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6039,
+              0.2039,
+              0.0706
+            ],
+            "alpha": 1,
+            "hex": "#9a3412"
+          }
+        },
+        "bg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9843,
+              0.9333,
+              0.8667
+            ],
+            "alpha": 1,
+            "hex": "#fbeedd"
+          }
+        },
+        "border": {
+          "$value": "{color.status.needs-you.fg}"
+        }
+      },
+      "blocked": {
+        "$description": "Red = blocked or do not. Never for focus in the admin theme.",
+        "fg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6627,
+              0.0353,
+              0.0941
+            ],
+            "alpha": 1,
+            "hex": "#a90918"
+          }
+        },
+        "bg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9843,
+              0.9373,
+              0.9255
+            ],
+            "alpha": 1,
+            "hex": "#fbefec"
+          }
+        },
+        "border": {
+          "$value": "{color.status.blocked.fg}"
+        }
+      },
+      "neutral": {
+        "$description": "Grey = not started, archived, no state.",
+        "fg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3608,
+              0.3451,
+              0.3176
+            ],
+            "alpha": 1,
+            "hex": "#5c5851"
+          }
+        },
+        "bg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9333,
+              0.9098,
+              0.8667
+            ],
+            "alpha": 1,
+            "hex": "#eee8dd"
+          }
+        },
+        "border": {
+          "$value": "{color.status.neutral.fg}"
+        }
+      }
+    },
+    "feedback": {
+      "$description": "Banner and field feedback tones, aliased to the L1 status families so one meaning has one colour.",
+      "error": {
+        "fg": {
+          "$value": "{color.status.blocked.fg}"
+        },
+        "bg": {
+          "$value": "{color.status.blocked.bg}"
+        },
+        "border": {
+          "$value": "{color.status.blocked.fg}"
+        }
+      },
+      "success": {
+        "fg": {
+          "$value": "{color.status.done.fg}"
+        },
+        "bg": {
+          "$value": "{color.status.done.bg}"
+        },
+        "border": {
+          "$value": "{color.status.done.fg}"
+        }
+      },
+      "info": {
+        "fg": {
+          "$value": "{color.status.progress.fg}"
+        },
+        "bg": {
+          "$value": "{color.status.progress.bg}"
+        },
+        "border": {
+          "$value": "{color.status.progress.fg}"
+        }
+      },
+      "needs-you": {
+        "fg": {
+          "$value": "{color.status.needs-you.fg}"
+        },
+        "bg": {
+          "$value": "{color.status.needs-you.bg}"
+        },
+        "border": {
+          "$value": "{color.status.needs-you.fg}"
+        }
+      }
+    },
+    "control": {
+      "bg": {
+        "$value": "{color.surface.panel}"
+      },
+      "bg-hover": {
+        "$value": "{color.surface.raised}"
+      },
+      "bg-disabled": {
+        "$value": "{color.surface.raised}"
+      },
+      "placeholder": {
+        "$value": "{color.text.muted}"
+      }
+    },
+    "skeleton": {
+      "base": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0196,
+            0.0235,
+            0.0275
+          ],
+          "alpha": 0.08,
+          "hex": "#050607"
+        }
+      },
+      "shine": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0196,
+            0.0235,
+            0.0275
+          ],
+          "alpha": 0.04,
+          "hex": "#050607"
+        }
+      }
+    },
+    "scrim": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0.0196,
+          0.0235,
+          0.0275
+        ],
+        "alpha": 0.55,
+        "hex": "#050607"
+      },
+      "$description": "Modal backdrop"
+    }
+  },
+  "radius": {
+    "$description": "V2 family: sm 6 (controls, chips on paper), lg 18 (cards), xl 22 (panels). DECISION: all toolbar controls share radius.control = 6px so a row has one radius (C2); DESIGN.md names 12 for long-form inputs.",
+    "control": {
+      "$type": "dimension",
+      "$value": {
+        "value": 6,
+        "unit": "px"
+      }
+    },
+    "card": {
+      "$type": "dimension",
+      "$value": {
+        "value": 18,
+        "unit": "px"
+      }
+    },
+    "panel": {
+      "$type": "dimension",
+      "$value": {
+        "value": 22,
+        "unit": "px"
+      }
+    },
+    "pill": {
+      "$type": "dimension",
+      "$value": {
+        "value": 999,
+        "unit": "px"
+      }
+    }
+  },
+  "motion": {
+    "duration": {
+      "fast": {
+        "$type": "duration",
+        "$value": {
+          "value": 150,
+          "unit": "ms"
+        }
+      },
+      "normal": {
+        "$type": "duration",
+        "$value": {
+          "value": 250,
+          "unit": "ms"
+        }
+      },
+      "slow": {
+        "$type": "duration",
+        "$value": {
+          "value": 400,
+          "unit": "ms"
+        }
+      }
+    },
+    "easing": {
+      "standard": {
+        "$type": "cubicBezier",
+        "$value": [
+          0,
+          0,
+          0.2,
+          1
+        ],
+        "$description": "ease-out family (DESIGN.md §6)"
+      }
+    }
+  },
+  "shadow": {
+    "card": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 1,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 2,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          },
+          "color": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1725,
+              0.1725,
+              0.1647
+            ],
+            "alpha": 0.04,
+            "hex": "#2c2c2a"
+          }
+        },
+        {
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 6,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 20,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          },
+          "color": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1725,
+              0.1725,
+              0.1647
+            ],
+            "alpha": 0.07,
+            "hex": "#2c2c2a"
+          }
+        }
+      ]
+    },
+    "overlay": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 4,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 12,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          },
+          "color": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0,
+              0
+            ],
+            "alpha": 0.04,
+            "hex": "#000000"
+          }
+        },
+        {
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 8,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 24,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          },
+          "color": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0,
+              0
+            ],
+            "alpha": 0.08,
+            "hex": "#000000"
+          }
+        }
+      ]
+    }
+  }
+}

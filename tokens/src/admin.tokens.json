@@ -1,0 +1,792 @@
+{
+  "$description": "Theme \"admin\": TRANSPORT dark admin. Values from web/src/styles/ui.css --ui-* resolved through web/src/theme/tokens.css [data-theme=\"dark\"].",
+  "color": {
+    "surface": {
+      "page": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0431,
+            0.0471,
+            0.0549
+          ],
+          "alpha": 1,
+          "hex": "#0b0c0e"
+        }
+      },
+      "panel": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.102,
+            0.1137,
+            0.1294
+          ],
+          "alpha": 1,
+          "hex": "#1a1d21"
+        }
+      },
+      "raised": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.1451,
+            0.1608,
+            0.1804
+          ],
+          "alpha": 1,
+          "hex": "#25292e"
+        }
+      },
+      "overlay": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.1843,
+            0.2,
+            0.2235
+          ],
+          "alpha": 1,
+          "hex": "#2f3339"
+        }
+      },
+      "inverse": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9294,
+            0.9294,
+            0.9294
+          ],
+          "alpha": 1,
+          "hex": "#ededed"
+        }
+      },
+      "inverse-panel": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9765,
+            0.9804,
+            0.9843
+          ],
+          "alpha": 1,
+          "hex": "#f9fafb"
+        }
+      }
+    },
+    "text": {
+      "primary": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9294,
+            0.9294,
+            0.9294
+          ],
+          "alpha": 1,
+          "hex": "#ededed"
+        }
+      },
+      "secondary": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.7059,
+            0.7216,
+            0.749
+          ],
+          "alpha": 1,
+          "hex": "#b4b8bf"
+        }
+      },
+      "muted": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.5843,
+            0.6078,
+            0.6392
+          ],
+          "alpha": 1,
+          "hex": "#959ba3"
+        },
+        "$description": "Placeholders and \"Any date\" words (C4)"
+      },
+      "link": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.3686,
+            0.6314,
+            1
+          ],
+          "alpha": 1,
+          "hex": "#5ea1ff"
+        }
+      },
+      "on-accent": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1,
+            1,
+            1
+          ],
+          "alpha": 1,
+          "hex": "#ffffff"
+        }
+      },
+      "on-inverse": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.0667,
+            0.0941,
+            0.1529
+          ],
+          "alpha": 1,
+          "hex": "#111827"
+        }
+      },
+      "on-inverse-secondary": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.2157,
+            0.2549,
+            0.3176
+          ],
+          "alpha": 1,
+          "hex": "#374151"
+        }
+      },
+      "on-inverse-muted": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.4196,
+            0.4471,
+            0.502
+          ],
+          "alpha": 1,
+          "hex": "#6b7280"
+        }
+      },
+      "disabled": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9294,
+            0.9294,
+            0.9294
+          ],
+          "alpha": 0.45,
+          "hex": "#ededed"
+        }
+      }
+    },
+    "border": {
+      "subtle": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.2078,
+            0.2275,
+            0.2549
+          ],
+          "alpha": 1,
+          "hex": "#353a41"
+        }
+      },
+      "control": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.4667,
+            0.4902,
+            0.5216
+          ],
+          "alpha": 1,
+          "hex": "#777d85"
+        }
+      },
+      "strong": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.2902,
+            0.3137,
+            0.3451
+          ],
+          "alpha": 1,
+          "hex": "#4a5058"
+        }
+      },
+      "on-inverse": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.898,
+            0.9059,
+            0.9216
+          ],
+          "alpha": 1,
+          "hex": "#e5e7eb"
+        }
+      }
+    },
+    "accent": {
+      "base": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.8431,
+            0.0588,
+            0.1412
+          ],
+          "alpha": 1,
+          "hex": "#d70f24"
+        },
+        "$description": "Red fill (primary button)"
+      },
+      "hover": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9255,
+            0.1882,
+            0.2118
+          ],
+          "alpha": 1,
+          "hex": "#ec3036"
+        },
+        "$description": "Red mark in dark"
+      },
+      "deep": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.6627,
+            0.0353,
+            0.0941
+          ],
+          "alpha": 1,
+          "hex": "#a90918"
+        }
+      },
+      "on-inverse": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9255,
+            0.1882,
+            0.2118
+          ],
+          "alpha": 1,
+          "hex": "#ec3036"
+        }
+      },
+      "tint": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.2078,
+            0.1569,
+            0.1686
+          ],
+          "alpha": 1,
+          "hex": "#35282b"
+        }
+      },
+      "gradient": {
+        "$type": "string",
+        "$value": "none",
+        "$description": "The admin has no gradient; primary is a flat fill."
+      }
+    },
+    "focus": {
+      "ring": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.3686,
+            0.6314,
+            1
+          ],
+          "alpha": 1,
+          "hex": "#5ea1ff"
+        },
+        "$description": "Admin focus is its OWN colour (blue) and never the error colour (X2 / AFPS1)."
+      },
+      "ring-on-inverse": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.1451,
+            0.3882,
+            0.9216
+          ],
+          "alpha": 1,
+          "hex": "#2563eb"
+        }
+      },
+      "ring-quiet": {
+        "$value": "{color.border.strong}"
+      }
+    },
+    "status": {
+      "done": {
+        "$description": "Green = done. Delivered, confirmed, paid.",
+        "fg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2039,
+              0.7804,
+              0.349
+            ],
+            "alpha": 1,
+            "hex": "#34c759"
+          }
+        },
+        "bg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1137,
+              0.1922,
+              0.1569
+            ],
+            "alpha": 1,
+            "hex": "#1d3128"
+          }
+        },
+        "border": {
+          "$value": "{color.status.done.fg}"
+        }
+      },
+      "progress": {
+        "$description": "Blue = in progress or waiting on others.",
+        "fg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3686,
+              0.6314,
+              1
+            ],
+            "alpha": 1,
+            "hex": "#5ea1ff"
+          }
+        },
+        "bg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1333,
+              0.1765,
+              0.2353
+            ],
+            "alpha": 1,
+            "hex": "#222d3c"
+          }
+        },
+        "border": {
+          "$value": "{color.status.progress.fg}"
+        }
+      },
+      "needs-you": {
+        "$description": "Amber = needs you. ALWAYS paired with the words of what to do (L1). The StatusChip and Banner enforce this.",
+        "fg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9608,
+              0.6471,
+              0.1412
+            ],
+            "alpha": 1,
+            "hex": "#f5a524"
+          }
+        },
+        "bg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2039,
+              0.1765,
+              0.1294
+            ],
+            "alpha": 1,
+            "hex": "#342d21"
+          }
+        },
+        "border": {
+          "$value": "{color.status.needs-you.fg}"
+        }
+      },
+      "blocked": {
+        "$description": "Red = blocked or do not. Never for focus in the admin theme.",
+        "fg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1,
+              0.4824,
+              0.4471
+            ],
+            "alpha": 1,
+            "hex": "#ff7b72"
+          }
+        },
+        "bg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2078,
+              0.1569,
+              0.1686
+            ],
+            "alpha": 1,
+            "hex": "#35282b"
+          }
+        },
+        "border": {
+          "$value": "{color.status.blocked.fg}"
+        }
+      },
+      "neutral": {
+        "$description": "Grey = not started, archived, no state.",
+        "fg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5843,
+              0.6078,
+              0.6392
+            ],
+            "alpha": 1,
+            "hex": "#959ba3"
+          }
+        },
+        "bg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1451,
+              0.1608,
+              0.1804
+            ],
+            "alpha": 1,
+            "hex": "#25292e"
+          }
+        },
+        "border": {
+          "$value": "{color.status.neutral.fg}"
+        }
+      }
+    },
+    "feedback": {
+      "$description": "Banner and field feedback tones, aliased to the L1 status families so one meaning has one colour.",
+      "error": {
+        "fg": {
+          "$value": "{color.status.blocked.fg}"
+        },
+        "bg": {
+          "$value": "{color.status.blocked.bg}"
+        },
+        "border": {
+          "$value": "{color.status.blocked.fg}"
+        }
+      },
+      "success": {
+        "fg": {
+          "$value": "{color.status.done.fg}"
+        },
+        "bg": {
+          "$value": "{color.status.done.bg}"
+        },
+        "border": {
+          "$value": "{color.status.done.fg}"
+        }
+      },
+      "info": {
+        "fg": {
+          "$value": "{color.status.progress.fg}"
+        },
+        "bg": {
+          "$value": "{color.status.progress.bg}"
+        },
+        "border": {
+          "$value": "{color.status.progress.fg}"
+        }
+      },
+      "needs-you": {
+        "fg": {
+          "$value": "{color.status.needs-you.fg}"
+        },
+        "bg": {
+          "$value": "{color.status.needs-you.bg}"
+        },
+        "border": {
+          "$value": "{color.status.needs-you.fg}"
+        }
+      }
+    },
+    "control": {
+      "bg": {
+        "$value": "{color.surface.raised}"
+      },
+      "bg-hover": {
+        "$value": "{color.surface.overlay}"
+      },
+      "bg-disabled": {
+        "$value": "{color.surface.panel}"
+      },
+      "placeholder": {
+        "$value": "{color.text.muted}"
+      }
+    },
+    "skeleton": {
+      "base": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9294,
+            0.9294,
+            0.9294
+          ],
+          "alpha": 0.08,
+          "hex": "#ededed"
+        }
+      },
+      "shine": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.9294,
+            0.9294,
+            0.9294
+          ],
+          "alpha": 0.04,
+          "hex": "#ededed"
+        }
+      }
+    },
+    "scrim": {
+      "$type": "color",
+      "$value": {
+        "colorSpace": "srgb",
+        "components": [
+          0,
+          0,
+          0
+        ],
+        "alpha": 0.6,
+        "hex": "#000000"
+      }
+    }
+  },
+  "radius": {
+    "control": {
+      "$type": "dimension",
+      "$value": {
+        "value": 10,
+        "unit": "px"
+      }
+    },
+    "card": {
+      "$type": "dimension",
+      "$value": {
+        "value": 12,
+        "unit": "px"
+      }
+    },
+    "panel": {
+      "$type": "dimension",
+      "$value": {
+        "value": 16,
+        "unit": "px"
+      }
+    },
+    "pill": {
+      "$type": "dimension",
+      "$value": {
+        "value": 9999,
+        "unit": "px"
+      }
+    }
+  },
+  "motion": {
+    "duration": {
+      "fast": {
+        "$type": "duration",
+        "$value": {
+          "value": 120,
+          "unit": "ms"
+        }
+      },
+      "normal": {
+        "$type": "duration",
+        "$value": {
+          "value": 180,
+          "unit": "ms"
+        }
+      },
+      "slow": {
+        "$type": "duration",
+        "$value": {
+          "value": 240,
+          "unit": "ms"
+        }
+      }
+    },
+    "easing": {
+      "standard": {
+        "$type": "cubicBezier",
+        "$value": [
+          0.2,
+          0.8,
+          0.2,
+          1
+        ],
+        "$description": "ui.css --y7-ease"
+      }
+    }
+  },
+  "shadow": {
+    "card": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 8,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 22,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          },
+          "color": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0,
+              0
+            ],
+            "alpha": 0.5,
+            "hex": "#000000"
+          }
+        }
+      ]
+    },
+    "overlay": {
+      "$type": "shadow",
+      "$value": [
+        {
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 0,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 0,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 1,
+            "unit": "px"
+          },
+          "color": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3529,
+              0.3765,
+              0.4078
+            ],
+            "alpha": 1,
+            "hex": "#5a6068"
+          }
+        },
+        {
+          "offsetX": {
+            "value": 0,
+            "unit": "px"
+          },
+          "offsetY": {
+            "value": 24,
+            "unit": "px"
+          },
+          "blur": {
+            "value": 48,
+            "unit": "px"
+          },
+          "spread": {
+            "value": 0,
+            "unit": "px"
+          },
+          "color": {
+            "colorSpace": "srgb",
+            "components": [
+              0,
+              0,
+              0
+            ],
+            "alpha": 0.55,
+            "hex": "#000000"
+          }
+        }
+      ]
+    }
+  }
+}

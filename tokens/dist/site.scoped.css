@@ -1,0 +1,124 @@
+/**
+ * Do not edit directly, this file was auto-generated.
+ */
+
+[data-y7-theme="site"] {
+  --y7-space-xxs: 2px;
+  --y7-space-xs: 4px;
+  --y7-space-sm: 8px;
+  --y7-space-md: 12px;
+  --y7-space-lg: 16px;
+  --y7-space-xl: 24px;
+  --y7-space-2xl: 32px;
+  --y7-space-3xl: 48px;
+  --y7-size-control-sm: 28px; /** Chips and compact controls */
+  --y7-size-control-md: 36px; /** Toolbar and filter-bar controls */
+  --y7-size-control-lg: 44px; /** Primary actions and forms */
+  --y7-size-control-touch: 44px; /** Minimum target on touch widths */
+  --y7-size-row: 48px; /** Table row header height (fixed; expanding never moves it). */
+  --y7-size-icon-sm: 16px;
+  --y7-size-icon-md: 20px;
+  --y7-size-panel-width: 480px; /** Side panel width on wide screens */
+  --y7-size-panel-sheet-max: 560px; /** Filter sheet max width */
+  --y7-size-control-min-width: 160px; /** Minimum width of a filter-bar control so a label change across locales never changes the row. */
+  --y7-font-family-ui: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif; /** ONE UI stack for en, pl, uk and ru (T2). System fonts carry Cyrillic and Polish diacritics; a Latin-only webfont is never used for controls. */
+  --y7-font-family-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; /** Tabular data and identifiers. Not for controls. */
+  --y7-font-size-2xs: 11px; /** Mono micro labels */
+  --y7-font-size-xs: 12px; /** Captions, chip text */
+  --y7-font-size-sm: 13px; /** Field labels, table meta */
+  --y7-font-size-md: 14px; /** Controls and body in dense UI */
+  --y7-font-size-lg: 16px; /** Reading body */
+  --y7-font-size-xl: 20px; /** Panel and dialog titles */
+  --y7-font-weight-regular: 400;
+  --y7-font-weight-medium: 500;
+  --y7-font-weight-semibold: 600;
+  --y7-font-weight-bold: 700;
+  --y7-font-line-height-tight: 1.2;
+  --y7-font-line-height-normal: 1.45;
+  --y7-font-line-height-loose: 1.65;
+  --y7-font-tracking-caps: 0.06em; /** Uppercase UI labels */
+  --y7-focus-width: 2px;
+  --y7-focus-offset: 2px;
+  --y7-border-width-hairline: 1px;
+  --y7-border-width-strong: 2px; /** Error state border on a field (A2/X2: error is a border on the field, focus is a ring outside it). */
+  --y7-z-dropdown: 20;
+  --y7-z-bottom-nav: 30;
+  --y7-z-drawer: 40;
+  --y7-z-overlay: 50;
+  --y7-z-toast: 9999;
+  --y7-opacity-disabled: 0.5;
+  --y7-opacity-busy-dim: 0.6; /** Previous content dimmed while reloading (S2). */
+  --y7-motion-lift-hover: -3px; /** Card hover lift cap (DESIGN.md: never past -3px). */
+  --y7-motion-duration-fast: 150ms;
+  --y7-motion-duration-normal: 250ms;
+  --y7-motion-duration-slow: 400ms;
+  --y7-motion-easing-standard: cubic-bezier(0, 0, 0.2, 1); /** ease-out family (DESIGN.md §6) */
+  --y7-color-surface-page: #f4f0e8; /** Manifest paper */
+  --y7-color-surface-panel: #fffaf1; /** Card cream */
+  --y7-color-surface-raised: #eee8dd; /** Paper deep */
+  --y7-color-surface-overlay: #fffaf1;
+  --y7-color-surface-inverse: #050607; /** Board black */
+  --y7-color-surface-inverse-panel: #0e1012; /** Panel inside board */
+  --y7-color-text-primary: #050607; /** Ink */
+  --y7-color-text-secondary: #5c5851; /** Ink muted */
+  --y7-color-text-muted: #5c5851; /** Placeholders and "Any date" words (C4). Same value as secondary today; a separate token so it can drift later without touching components. */
+  --y7-color-text-link: #a90918; /** Red deep: 7:1 on paper */
+  --y7-color-text-on-accent: #fff7ed;
+  --y7-color-text-on-inverse: #fff7ed;
+  --y7-color-text-on-inverse-secondary: #e8e0d3;
+  --y7-color-text-on-inverse-muted: #9c9b96;
+  --y7-color-text-disabled: rgb(5 6 7 / 0.45);
+  --y7-color-border-subtle: rgb(5 6 7 / 0.14); /** line-on-paper hairline */
+  --y7-color-border-control: rgb(5 6 7 / 0.28); /** Control edge on paper (DECISION: DESIGN.md has only the .14 hairline; .28 gives a field edge that reads as a field) */
+  --y7-color-border-strong: rgb(5 6 7 / 0.4);
+  --y7-color-border-on-inverse: rgb(255 247 237 / 0.14); /** line-on-dark */
+  --y7-color-accent-base: #d70f24; /** Signal red. Signal Budget: max one red fill + two accents per viewport. */
+  --y7-color-accent-hover: #a90918;
+  --y7-color-accent-deep: #a90918;
+  --y7-color-accent-on-inverse: #ef3a4e; /** Body-size red on dark (contrast law) */
+  --y7-color-accent-tint: #fbefec; /** Red tint wash */
+  --y7-color-accent-gradient: linear-gradient(135deg, #d70f24, #a90918); /** The ONLY legal gradient (DESIGN.md). Primary CTA fill on the site. */
+  --y7-color-focus-ring: #d70f24; /** Keyboard focus ring on paper (X2: 2px, offset 2). Red here is the site law; a field focused by the page on load shows a neutral ring until the person acts. */
+  --y7-color-focus-ring-on-inverse: #ef3a4e;
+  --y7-color-status-done-fg: #0f6e56;
+  --y7-color-status-done-bg: #e1f5ee;
+  --y7-color-status-progress-fg: #14648c;
+  --y7-color-status-progress-bg: #e3eef5;
+  --y7-color-status-needs-you-fg: #9a3412;
+  --y7-color-status-needs-you-bg: #fbeedd;
+  --y7-color-status-blocked-fg: #a90918;
+  --y7-color-status-blocked-bg: #fbefec;
+  --y7-color-status-neutral-fg: #5c5851;
+  --y7-color-status-neutral-bg: #eee8dd;
+  --y7-color-skeleton-base: rgb(5 6 7 / 0.08);
+  --y7-color-skeleton-shine: rgb(5 6 7 / 0.04);
+  --y7-color-scrim: rgb(5 6 7 / 0.55); /** Modal backdrop */
+  --y7-radius-control: 6px;
+  --y7-radius-card: 18px;
+  --y7-radius-panel: 22px;
+  --y7-radius-pill: 999px;
+  --y7-shadow-card: 0px 1px 2px 0px rgb(44 44 42 / 0.04), 0px 6px 20px 0px rgb(44 44 42 / 0.07);
+  --y7-shadow-overlay: 0px 4px 12px 0px rgb(0 0 0 / 0.04), 0px 8px 24px 0px rgb(0 0 0 / 0.08);
+  --y7-color-focus-ring-quiet: var(--y7-color-border-strong); /** Neutral ring for a programmatic (on-load) focus */
+  --y7-color-status-done-border: var(--y7-color-status-done-fg);
+  --y7-color-status-progress-border: var(--y7-color-status-progress-fg);
+  --y7-color-status-needs-you-border: var(--y7-color-status-needs-you-fg);
+  --y7-color-status-blocked-border: var(--y7-color-status-blocked-fg);
+  --y7-color-status-neutral-border: var(--y7-color-status-neutral-fg);
+  --y7-color-feedback-error-fg: var(--y7-color-status-blocked-fg);
+  --y7-color-feedback-error-bg: var(--y7-color-status-blocked-bg);
+  --y7-color-feedback-error-border: var(--y7-color-status-blocked-fg);
+  --y7-color-feedback-success-fg: var(--y7-color-status-done-fg);
+  --y7-color-feedback-success-bg: var(--y7-color-status-done-bg);
+  --y7-color-feedback-success-border: var(--y7-color-status-done-fg);
+  --y7-color-feedback-info-fg: var(--y7-color-status-progress-fg);
+  --y7-color-feedback-info-bg: var(--y7-color-status-progress-bg);
+  --y7-color-feedback-info-border: var(--y7-color-status-progress-fg);
+  --y7-color-feedback-needs-you-fg: var(--y7-color-status-needs-you-fg);
+  --y7-color-feedback-needs-you-bg: var(--y7-color-status-needs-you-bg);
+  --y7-color-feedback-needs-you-border: var(--y7-color-status-needs-you-fg);
+  --y7-color-control-bg: var(--y7-color-surface-panel);
+  --y7-color-control-bg-hover: var(--y7-color-surface-raised);
+  --y7-color-control-bg-disabled: var(--y7-color-surface-raised);
+  --y7-color-control-placeholder: var(--y7-color-text-muted);
+}
