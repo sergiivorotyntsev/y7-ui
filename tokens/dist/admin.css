@@ -72,6 +72,7 @@
   --y7-color-border-control: #777d85;
   --y7-color-border-strong: #4a5058;
   --y7-color-border-on-inverse: #e5e7eb;
+  --y7-color-border-control-inverse: #6b7280; /** Control edge on the admin's light inverse surfaces, measured ≥ 3:1 (tokens/test/contrast.test.mjs). */
   --y7-color-accent-base: #d70f24; /** Red fill (primary button) */
   --y7-color-accent-hover: #ec3036; /** Red mark in dark */
   --y7-color-accent-deep: #a90918;

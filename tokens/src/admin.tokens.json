@@ -253,6 +253,20 @@
           "alpha": 1,
           "hex": "#e5e7eb"
         }
+      },
+      "control-inverse": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            0.4196,
+            0.4471,
+            0.502
+          ],
+          "alpha": 1,
+          "hex": "#6b7280"
+        },
+        "$description": "Control edge on the admin's light inverse surfaces, measured ≥ 3:1 (tokens/test/contrast.test.mjs)."
       }
     },
     "accent": {

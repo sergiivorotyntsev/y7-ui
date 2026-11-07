@@ -233,10 +233,10 @@
             0.0235,
             0.0275
           ],
-          "alpha": 0.28,
+          "alpha": 0.48,
           "hex": "#050607"
         },
-        "$description": "Control edge on paper (DECISION: DESIGN.md has only the .14 hairline; .28 gives a field edge that reads as a field)"
+        "$description": "Control edge on paper: ink at 48%, MEASURED ≥ 3:1 non-text contrast (WCAG 1.4.11): 3.48:1 on paper #f4f0e8, 3.54:1 on card cream #fffaf1 (tokens/test/contrast.test.mjs). Claude's ruling 2026-11-07: not a fixed 28% (1.95:1)."
       },
       "strong": {
         "$type": "color",
@@ -264,6 +264,20 @@
           "hex": "#fff7ed"
         },
         "$description": "line-on-dark"
+      },
+      "control-inverse": {
+        "$type": "color",
+        "$value": {
+          "colorSpace": "srgb",
+          "components": [
+            1.0,
+            0.9686,
+            0.9294
+          ],
+          "alpha": 0.4,
+          "hex": "#fff7ed"
+        },
+        "$description": "Control edge on board-black: on-dark text at 40%, measured 3.55:1 on board #050607, 3.65:1 on panel #0e1012."
       }
     },
     "accent": {
@@ -641,11 +655,11 @@
     }
   },
   "radius": {
-    "$description": "V2 family: sm 6 (controls, chips on paper), lg 18 (cards), xl 22 (panels). DECISION: all toolbar controls share radius.control = 6px so a row has one radius (C2); DESIGN.md names 12 for long-form inputs.",
+    "$description": "V2 family: control 12 (DESIGN.md's input radius, used by every control in a row so a row has one radius, C2; Claude's ruling 2026-11-07), lg 18 (cards), xl 22 (panels).",
     "control": {
       "$type": "dimension",
       "$value": {
-        "value": 6,
+        "value": 12,
         "unit": "px"
       }
     },

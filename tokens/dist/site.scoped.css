@@ -69,9 +69,10 @@
   --y7-color-text-on-inverse-muted: #9c9b96;
   --y7-color-text-disabled: rgb(5 6 7 / 0.45);
   --y7-color-border-subtle: rgb(5 6 7 / 0.14); /** line-on-paper hairline */
-  --y7-color-border-control: rgb(5 6 7 / 0.28); /** Control edge on paper (DECISION: DESIGN.md has only the .14 hairline; .28 gives a field edge that reads as a field) */
+  --y7-color-border-control: rgb(5 6 7 / 0.48); /** Control edge on paper: ink at 48%, MEASURED ≥ 3:1 non-text contrast (WCAG 1.4.11): 3.48:1 on paper #f4f0e8, 3.54:1 on card cream #fffaf1 (tokens/test/contrast.test.mjs). Claude's ruling 2026-11-07: not a fixed 28% (1.95:1). */
   --y7-color-border-strong: rgb(5 6 7 / 0.4);
   --y7-color-border-on-inverse: rgb(255 247 237 / 0.14); /** line-on-dark */
+  --y7-color-border-control-inverse: rgb(255 247 237 / 0.4); /** Control edge on board-black: on-dark text at 40%, measured 3.55:1 on board #050607, 3.65:1 on panel #0e1012. */
   --y7-color-accent-base: #d70f24; /** Signal red. Signal Budget: max one red fill + two accents per viewport. */
   --y7-color-accent-hover: #a90918;
   --y7-color-accent-deep: #a90918;
@@ -93,7 +94,7 @@
   --y7-color-skeleton-base: rgb(5 6 7 / 0.08);
   --y7-color-skeleton-shine: rgb(5 6 7 / 0.04);
   --y7-color-scrim: rgb(5 6 7 / 0.55); /** Modal backdrop */
-  --y7-radius-control: 6px;
+  --y7-radius-control: 12px;
   --y7-radius-card: 18px;
   --y7-radius-panel: 22px;
   --y7-radius-pill: 999px;

@@ -70,6 +70,7 @@ export const tokens = {
   'color-border-control': "#777d85",
   'color-border-strong': "#4a5058",
   'color-border-on-inverse': "#e5e7eb",
+  'color-border-control-inverse': "#6b7280",
   'color-accent-base': "#d70f24",
   'color-accent-hover': "#ec3036",
   'color-accent-deep': "#a90918",
