@@ -1,0 +1,10 @@
+/* The story canvas takes the theme's page surface so both themes are judged on their own ground. */
+.y7-sb-canvas { min-block-size: 100vh; padding: var(--y7-space-xl); background-color: var(--y7-color-surface-page); color: var(--y7-color-text-primary); font-family: var(--y7-font-family-ui); }
+.y7-sb-stack { display: grid; gap: var(--y7-space-lg); align-items: start; justify-items: start; }
+.y7-sb-row { display: flex; flex-wrap: wrap; gap: var(--y7-space-md); align-items: center; }
+.y7-sb-note { font-size: var(--y7-font-size-sm); color: var(--y7-color-text-secondary); max-inline-size: 60ch; }
+.y7-sb-narrow { inline-size: var(--y7-size-panel-width); max-inline-size: 100%; }
+.y7-sb-swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(var(--y7-size-control-min-width), 1fr)); gap: var(--y7-space-sm); }
+.y7-sb-swatch { display: grid; gap: var(--y7-space-xs); font-size: var(--y7-font-size-xs); font-family: var(--y7-font-family-mono); }
+.y7-sb-swatch > span { display: block; block-size: var(--y7-size-row); border-radius: var(--y7-radius-control); border: var(--y7-border-width-hairline) solid var(--y7-color-border-subtle); }
+.y7-sb-measure { outline: var(--y7-border-width-hairline) dashed var(--y7-color-border-strong); }

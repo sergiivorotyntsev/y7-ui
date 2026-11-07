@@ -1,0 +1,9 @@
+import { StatusChip, FilterChip } from '../src/index.js';
+import { STRINGS, LOCALES, t } from './strings.js';
+
+export default { title: 'Primitives/Chip', parameters: { docs: { description: { component: 'L1 status chips: green done, blue progress, amber needs-you (always with the words of what to do), red blocked, grey neutral. Filter chips carry an × named by removeLabel.' } } } };
+
+export const Statuses = { render: (_, ctx) => { const s = t(ctx); return <div className="y7-sb-row"><StatusChip tone="done">{s.done}</StatusChip><StatusChip tone="progress">{s.progress}</StatusChip><StatusChip tone="needs-you" action={s.needsYouAction}>{s.needsYou}</StatusChip><StatusChip tone="blocked">{s.blocked}</StatusChip><StatusChip tone="neutral">{s.neutral}</StatusChip></div>; } };
+export const NeedsYouWithAction = { name: 'Needs you (amber) with its action words', render: (_, ctx) => <StatusChip tone="needs-you" action={t(ctx).needsYouAction}>{t(ctx).needsYou}</StatusChip> };
+export const FilterChips = { render: (_, ctx) => { const s = t(ctx); return <div className="y7-sb-row"><FilterChip removeLabel={s.remove({ label: s.closed })}>{s.status}: {s.closed}</FilterChip><FilterChip removeLabel={s.remove({ label: 'Nov 6 – 7' })}>{s.date}: Nov 6 – 7</FilterChip></div>; } };
+export const AllLocales = { render: () => <div className="y7-sb-stack">{LOCALES.map((l) => <div key={l} lang={l} className="y7-sb-row"><StatusChip tone="done">{STRINGS[l].done}</StatusChip><StatusChip tone="needs-you" action={STRINGS[l].needsYouAction}>{STRINGS[l].needsYou}</StatusChip><StatusChip tone="blocked">{STRINGS[l].blocked}</StatusChip><FilterChip removeLabel={STRINGS[l].remove({ label: STRINGS[l].closed })}>{STRINGS[l].closed}</FilterChip></div>)}</div> };

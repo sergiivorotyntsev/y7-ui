@@ -2,7 +2,7 @@
 // Per theme: <theme>.css (:root), <theme>.scoped.css ([data-y7-theme="<theme>"]), <theme>.js (flat map of CSS var name -> value).
 // Run: npm run tokens. Never edit tokens/dist by hand.
 import StyleDictionary from 'style-dictionary';
-import { formats, transformGroups } from 'style-dictionary/enums';
+import { formats } from 'style-dictionary/enums';
 import { writeFileSync, mkdirSync } from 'node:fs';
 
 const PREFIX = 'y7';
