@@ -1,21 +1,24 @@
+import { useEffect } from 'react';
 import { I18nProvider, useLocale } from 'react-aria-components';
 import { toBcp47 } from '../DateRange/dateRangeFormat.js';
-import { cx } from '../shared/cx.js';
 
 /**
- * Wraps an app (or a region) in the theme and locale the primitives read.
- * theme: 'site' | 'admin' (sets data-y7-theme for the scoped token CSS); locale: 'en' | 'pl' | 'uk' | 'ru' (or 'ua') or a BCP 47 tag.
- * Sets lang on the wrapper so screen readers switch language with the account (X3).
+ * The locale and theme the primitives read — with NO element of its own (Claude's ruling, 2026-11-07: adopting the
+ * library must never change an app's layout).
+ * - locale: 'en' | 'pl' | 'uk' | 'ru' (or 'ua') or a BCP 47 tag, for React Aria's dates, numbers and calendar.
+ * - theme: 'site' | 'admin', put on <html data-y7-theme> after mount so the scoped token CSS applies. To avoid any
+ *   first-paint flash, an app may instead write the attribute in its index.html (or import the unscoped theme CSS,
+ *   which sets :root) and pass applyTheme={false}.
+ * Every primitive root carries the .y7-ui class itself (src/styles/base.css: focus law, one UI font, tabular numbers,
+ * reduced motion). A dark region inside the site theme adds the .y7-on-inverse class to its own element.
+ * Server rendering / prerender: nothing touches the DOM until the effect runs.
  */
-export function Y7Provider({ theme = 'site', locale = 'en', inverse = false, className, children, ...rest }) {
-  const tag = toBcp47(locale);
-  return (
-    <I18nProvider locale={tag}>
-      <div {...rest} className={cx('y7-ui', inverse && 'y7-on-inverse', className)} data-y7-theme={theme} lang={tag.split('-')[0]}>
-        {children}
-      </div>
-    </I18nProvider>
-  );
+export function Y7Provider({ theme = 'site', locale = 'en', applyTheme = true, children }) {
+  useEffect(() => {
+    if (!applyTheme || typeof document === 'undefined') return;
+    document.documentElement.dataset.y7Theme = theme;
+  }, [theme, applyTheme]);
+  return <I18nProvider locale={toBcp47(locale)}>{children}</I18nProvider>;
 }
 
 /** The active BCP 47 locale (from the nearest I18nProvider, or the browser's). */

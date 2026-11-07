@@ -34,7 +34,9 @@ import { Y7Provider, Button, FilterBar, Select, DateRange, SearchField, StatusCh
 </Y7Provider>
 ```
 
-`Y7Provider` sets `data-y7-theme`, `lang` (X3) and React Aria's `I18nProvider`, so `Select`, `DateRange` and the calendar speak the account's language. The `*.scoped.css` files define the variables only under `[data-y7-theme="..."]` (used by Storybook to switch themes live; an app normally loads the unscoped file).
+`Y7Provider` renders **no element of its own** (Claude's ruling, 2026-11-07: adopting the library must never change an app's layout). It provides React Aria's `I18nProvider`, so `Select`, `DateRange` and the calendar speak the account's language, and after mount puts `data-y7-theme` on `<html>`. To avoid a first-paint flash, write the attribute in `index.html` (or load the unscoped theme CSS, which sets `:root`) and pass `applyTheme={false}`. `<html lang>` is the app's own job (X3). Every primitive root carries `.y7-ui` itself; a dark region in the site theme adds `.y7-on-inverse` to its own element. The `*.scoped.css` files define the variables only under `[data-y7-theme="..."]` (Storybook switches themes with them).
+
+**Admin light theme:** not built yet. Claude's ruling: it is required before any admin screen migrates (not for the portal pilot).
 
 Tokens in JS, without literals: `import { cssVar, tokens } from '@sergiivorotyntsev/y7-ui/tokens/site'` then `style={{ background: cssVar('color-surface-panel') }}`.
 
