@@ -1,0 +1,15 @@
+.skeleton { display: grid; gap: var(--y7-space-sm); }
+.bar {
+  display: block;
+  inline-size: 100%;
+  border-radius: var(--y7-radius-control);
+  background-color: var(--y7-color-skeleton-base);
+  background-image: linear-gradient(90deg, transparent, var(--y7-color-skeleton-shine), transparent);
+  background-size: 200% 100%;
+  animation: shimmer var(--y7-motion-duration-slow) var(--y7-motion-easing-standard) infinite alternate;
+}
+.text { block-size: var(--y7-space-xl); }
+.row { block-size: var(--y7-size-row); }
+.card { block-size: calc(var(--y7-size-row) * 3); border-radius: var(--y7-radius-card); }
+@keyframes shimmer { from { background-position: 100% 0; } to { background-position: 0 0; } }
+@media (prefers-reduced-motion: reduce) { .bar { animation: none; } }

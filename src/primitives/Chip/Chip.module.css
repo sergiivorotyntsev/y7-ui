@@ -1,0 +1,47 @@
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--y7-space-xs);
+  block-size: var(--y7-size-control-sm);
+  padding-inline: var(--y7-space-sm);
+  border-radius: var(--y7-radius-pill);
+  border: var(--y7-border-width-hairline) solid var(--y7-color-border-subtle);
+  font-family: var(--y7-font-family-ui);
+  font-size: var(--y7-font-size-xs);
+  font-weight: var(--y7-font-weight-medium);
+  line-height: var(--y7-font-line-height-tight);
+  white-space: nowrap;
+  color: var(--y7-color-text-primary);
+  background-color: var(--y7-color-control-bg);
+}
+.words { display: inline-block; }
+
+/* Status chips: fg + bg + border from the L1 tokens, resolved per tone. */
+.status { color: var(--chip-fg); background-color: var(--chip-bg); border-color: var(--chip-bg); }
+.status[data-tone="done"] { --chip-fg: var(--y7-color-status-done-fg); --chip-bg: var(--y7-color-status-done-bg); }
+.status[data-tone="progress"] { --chip-fg: var(--y7-color-status-progress-fg); --chip-bg: var(--y7-color-status-progress-bg); }
+.status[data-tone="needs-you"] { --chip-fg: var(--y7-color-status-needs-you-fg); --chip-bg: var(--y7-color-status-needs-you-bg); }
+.status[data-tone="blocked"] { --chip-fg: var(--y7-color-status-blocked-fg); --chip-bg: var(--y7-color-status-blocked-bg); }
+.status[data-tone="neutral"] { --chip-fg: var(--y7-color-status-neutral-fg); --chip-bg: var(--y7-color-status-neutral-bg); }
+.dot { inline-size: var(--y7-space-sm); block-size: var(--y7-space-sm); border-radius: var(--y7-radius-pill); background-color: currentcolor; flex-shrink: 0; }
+.action { font-weight: var(--y7-font-weight-regular); }
+.action::before { content: "\00B7\00A0"; }
+
+/* Filter chips: neutral control look with an × of the chip's own height. */
+.filter { padding-inline-end: var(--y7-space-xxs); }
+.remove {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--y7-space-xl);
+  block-size: var(--y7-space-xl);
+  padding: 0;
+  border: 0;
+  border-radius: var(--y7-radius-pill);
+  background-color: transparent;
+  color: var(--y7-color-text-secondary);
+  font-size: var(--y7-font-size-md);
+  line-height: 0;
+  cursor: pointer;
+}
+.remove[data-hovered] { background-color: var(--y7-color-control-bg-hover); color: var(--y7-color-text-primary); }

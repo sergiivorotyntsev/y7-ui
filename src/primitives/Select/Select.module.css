@@ -1,0 +1,20 @@
+.trigger { justify-content: space-between; }
+.list { display: grid; max-block-size: calc(var(--y7-size-row) * 6); overflow: auto; outline: none; }
+.item {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: var(--y7-space-sm);
+  min-block-size: var(--y7-size-control-md);
+  padding-block: var(--y7-space-xs);
+  padding-inline: var(--y7-space-md);
+  border-radius: var(--y7-radius-control);
+  cursor: default;
+  color: var(--y7-color-text-primary);
+}
+.item[data-focused], .item[data-hovered] { background-color: var(--y7-color-control-bg-hover); outline: none; }
+.item[data-selected] { font-weight: var(--y7-font-weight-semibold); }
+.item[data-disabled] { color: var(--y7-color-text-disabled); }
+.itemLabel { overflow-wrap: anywhere; }
+.itemDescription { grid-column: 1; font-size: var(--y7-font-size-xs); color: var(--y7-color-text-secondary); }
+.check { grid-column: 2; grid-row: 1; display: inline-flex; inline-size: var(--y7-size-icon-md); color: var(--y7-color-accent-base); font-size: var(--y7-font-size-lg); line-height: 0; }

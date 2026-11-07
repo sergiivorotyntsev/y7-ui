@@ -1,0 +1,60 @@
+.button {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--y7-space-sm);
+  min-block-size: var(--y7-size-control-md);
+  padding-block: 0;
+  padding-inline: var(--y7-space-lg);
+  border-radius: var(--y7-radius-control);
+  border: var(--y7-border-width-hairline) solid transparent;
+  font-family: var(--y7-font-family-ui);
+  font-size: var(--y7-font-size-md);
+  font-weight: var(--y7-font-weight-semibold);
+  line-height: var(--y7-font-line-height-tight);
+  white-space: nowrap;
+  cursor: pointer;
+  text-decoration: none;
+  transition:
+    background-color var(--y7-motion-duration-fast) var(--y7-motion-easing-standard),
+    border-color var(--y7-motion-duration-fast) var(--y7-motion-easing-standard),
+    color var(--y7-motion-duration-fast) var(--y7-motion-easing-standard);
+}
+.sm { min-block-size: var(--y7-size-control-sm); padding-inline: var(--y7-space-md); font-size: var(--y7-font-size-sm); }
+.lg { min-block-size: var(--y7-size-control-lg); padding-inline: var(--y7-space-xl); }
+
+.primary {
+  background-color: var(--y7-color-accent-base);
+  background-image: var(--y7-color-accent-gradient);
+  color: var(--y7-color-text-on-accent);
+}
+.primary[data-hovered] { background-image: none; background-color: var(--y7-color-accent-hover); }
+
+.secondary {
+  background-color: var(--y7-color-control-bg);
+  color: var(--y7-color-text-primary);
+  border-color: var(--y7-color-border-control);
+}
+.secondary[data-hovered] { background-color: var(--y7-color-control-bg-hover); }
+
+.ghost { background-color: transparent; color: var(--y7-color-text-primary); }
+.ghost[data-hovered] { background-color: var(--y7-color-control-bg-hover); }
+
+.danger {
+  background-color: transparent;
+  color: var(--y7-color-feedback-error-fg);
+  border-color: var(--y7-color-feedback-error-border);
+}
+.danger[data-hovered] { background-color: var(--y7-color-feedback-error-bg); }
+
+.button[data-disabled] { cursor: not-allowed; opacity: var(--y7-opacity-disabled); }
+.button[data-pending] { cursor: progress; }
+
+.label { display: inline-flex; align-items: center; gap: var(--y7-space-sm); }
+.label[data-hidden] { visibility: hidden; }
+.busy { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+
+@media (pointer: coarse) {
+  .button { min-block-size: var(--y7-size-control-touch); }
+}

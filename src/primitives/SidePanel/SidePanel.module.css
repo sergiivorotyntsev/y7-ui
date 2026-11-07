@@ -1,0 +1,23 @@
+.overlay { position: fixed; inset: 0; z-index: var(--y7-z-drawer); display: flex; justify-content: flex-end; background-color: var(--y7-color-scrim); }
+.overlay[data-entering] { animation: fade var(--y7-motion-duration-normal) var(--y7-motion-easing-standard); }
+.panel {
+  display: flex;
+  inline-size: var(--y7-size-panel-width);
+  max-inline-size: 100%;
+  block-size: 100%;
+  background-color: var(--y7-color-surface-panel);
+  color: var(--y7-color-text-primary);
+  box-shadow: var(--y7-shadow-overlay);
+  border-inline-start: var(--y7-border-width-hairline) solid var(--y7-color-border-subtle);
+  font-family: var(--y7-font-family-ui);
+  outline: none;
+}
+.panel[data-entering] { animation: slide var(--y7-motion-duration-normal) var(--y7-motion-easing-standard); }
+.dialog { display: flex; flex-direction: column; inline-size: 100%; block-size: 100%; outline: none; }
+.header { display: flex; align-items: center; justify-content: space-between; gap: var(--y7-space-md); min-block-size: var(--y7-size-row); padding: var(--y7-space-sm) var(--y7-space-md) var(--y7-space-sm) var(--y7-space-xl); border-block-end: var(--y7-border-width-hairline) solid var(--y7-color-border-subtle); }
+.title { margin: 0; font-size: var(--y7-font-size-xl); font-weight: var(--y7-font-weight-semibold); line-height: var(--y7-font-line-height-tight); overflow-wrap: anywhere; }
+.body { flex: 1; min-block-size: 0; overflow: auto; padding: var(--y7-space-lg) var(--y7-space-xl); font-size: var(--y7-font-size-md); line-height: var(--y7-font-line-height-normal); }
+.footer { display: flex; justify-content: flex-end; gap: var(--y7-space-sm); padding: var(--y7-space-md) var(--y7-space-xl) calc(var(--y7-space-md) + env(safe-area-inset-bottom)); border-block-start: var(--y7-border-width-hairline) solid var(--y7-color-border-subtle); background-color: var(--y7-color-surface-raised); }
+@media (max-width: 767px) { .panel { inline-size: 100%; border-inline-start: 0; } }
+@keyframes fade { from { opacity: 0; } }
+@keyframes slide { from { transform: translateX(var(--y7-space-3xl)); opacity: 0; } }

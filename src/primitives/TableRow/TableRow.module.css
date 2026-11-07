@@ -1,0 +1,26 @@
+.table { inline-size: 100%; border-collapse: collapse; font-family: var(--y7-font-family-ui); font-size: var(--y7-font-size-md); color: var(--y7-color-text-primary); font-variant-numeric: tabular-nums; }
+.caption { position: absolute; inline-size: 1px; block-size: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.head { block-size: var(--y7-size-control-md); }
+.th {
+  padding-inline: var(--y7-space-md);
+  text-align: start;
+  font-size: var(--y7-font-size-xs);
+  font-weight: var(--y7-font-weight-medium);
+  letter-spacing: var(--y7-font-tracking-caps);
+  text-transform: uppercase;
+  color: var(--y7-color-text-secondary);
+  border-block-end: var(--y7-border-width-hairline) solid var(--y7-color-border-subtle);
+  white-space: nowrap;
+}
+.th[data-align="end"] { text-align: end; }
+/* Fixed header height: the row never grows when it expands (PR #16's fix, made the default). */
+.row { block-size: var(--y7-size-row); border-block-end: var(--y7-border-width-hairline) solid var(--y7-color-border-subtle); transition: background-color var(--y7-motion-duration-fast) var(--y7-motion-easing-standard); }
+.row[data-selected] { background-color: var(--y7-color-accent-tint); }
+.row[data-expanded] { border-block-end-color: transparent; }
+.td { padding-inline: var(--y7-space-md); white-space: nowrap; vertical-align: middle; }
+.toggleCol { inline-size: var(--y7-size-control-lg); padding-inline: var(--y7-space-xs); text-align: end; }
+.toggle { transition: transform var(--y7-motion-duration-fast) var(--y7-motion-easing-standard); }
+.toggleOpen { transform: rotate(0.5turn); }
+.detail { border-block-end: var(--y7-border-width-hairline) solid var(--y7-color-border-subtle); }
+.detailCell { padding: var(--y7-space-md) var(--y7-space-md) var(--y7-space-lg); white-space: normal; background-color: var(--y7-color-surface-raised); }
+@media (hover: hover) and (pointer: fine) { .row:hover { background-color: var(--y7-color-control-bg-hover); } }

@@ -1,0 +1,32 @@
+.control { cursor: text; padding-inline-end: var(--y7-space-xs); }
+.control:focus-within { outline: var(--y7-focus-width) solid var(--y7-color-focus-ring); outline-offset: var(--y7-focus-offset); }
+.input {
+  flex: 1;
+  min-inline-size: 0;
+  border: 0;
+  padding: 0;
+  background-color: transparent;
+  color: inherit;
+  font: inherit;
+  font-family: var(--y7-font-family-ui);
+  outline: none;
+}
+.input::placeholder { color: var(--y7-color-control-placeholder); opacity: 1; }
+.input::-webkit-search-cancel-button { display: none; }
+.clear {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  inline-size: var(--y7-size-control-sm);
+  block-size: var(--y7-size-control-sm);
+  padding: 0;
+  border: 0;
+  border-radius: var(--y7-radius-pill);
+  background-color: transparent;
+  color: var(--y7-color-text-secondary);
+  font-size: var(--y7-font-size-lg);
+  line-height: 0;
+  cursor: pointer;
+}
+.clear[data-hovered] { background-color: var(--y7-color-control-bg-hover); color: var(--y7-color-text-primary); }
+.field[data-empty] .clear { visibility: hidden; }

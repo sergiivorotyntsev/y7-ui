@@ -1,0 +1,30 @@
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  inline-size: var(--y7-size-control-md);
+  block-size: var(--y7-size-control-md);
+  padding: 0;
+  border-radius: var(--y7-radius-control);
+  border: var(--y7-border-width-hairline) solid transparent;
+  font-size: var(--y7-font-size-xl);
+  line-height: 0;
+  color: var(--y7-color-text-secondary);
+  background-color: transparent;
+  cursor: pointer;
+  transition: background-color var(--y7-motion-duration-fast) var(--y7-motion-easing-standard), color var(--y7-motion-duration-fast) var(--y7-motion-easing-standard);
+}
+.sm { inline-size: var(--y7-size-control-sm); block-size: var(--y7-size-control-sm); font-size: var(--y7-font-size-lg); }
+.lg { inline-size: var(--y7-size-control-lg); block-size: var(--y7-size-control-lg); }
+.ghost[data-hovered] { background-color: var(--y7-color-control-bg-hover); color: var(--y7-color-text-primary); }
+.secondary { background-color: var(--y7-color-control-bg); border-color: var(--y7-color-border-control); color: var(--y7-color-text-primary); }
+.secondary[data-hovered] { background-color: var(--y7-color-control-bg-hover); }
+.danger { color: var(--y7-color-feedback-error-fg); }
+.danger[data-hovered] { background-color: var(--y7-color-feedback-error-bg); }
+.button[data-pressed] { background-color: var(--y7-color-control-bg-hover); }
+.button[data-disabled] { cursor: not-allowed; opacity: var(--y7-opacity-disabled); }
+
+@media (pointer: coarse) {
+  .button, .sm { inline-size: var(--y7-size-control-touch); block-size: var(--y7-size-control-touch); }
+}
