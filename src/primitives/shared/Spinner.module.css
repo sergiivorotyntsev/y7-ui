@@ -1,0 +1,14 @@
+.spinner { display: inline-flex; align-items: center; justify-content: center; line-height: 0; }
+.ring {
+  display: block;
+  border-radius: var(--y7-radius-pill);
+  border: var(--y7-border-width-strong) solid currentcolor;
+  border-right-color: transparent;
+  animation: spin var(--y7-motion-duration-slow) linear infinite;
+}
+.sm .ring { inline-size: var(--y7-size-icon-sm); block-size: var(--y7-size-icon-sm); }
+.md .ring { inline-size: var(--y7-size-icon-md); block-size: var(--y7-size-icon-md); }
+@keyframes spin { to { transform: rotate(1turn); } }
+@media (prefers-reduced-motion: reduce) {
+  .ring { animation: none; border-right-color: currentcolor; opacity: var(--y7-opacity-busy-dim); }
+}

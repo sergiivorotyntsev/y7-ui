@@ -1,0 +1,32 @@
+/* Y7 UI base: the laws every primitive relies on. Import once per app after a theme CSS:
+   import '@sergiivorotyntsev/y7-ui/tokens/site.css'; import '@sergiivorotyntsev/y7-ui/styles.css' (see src/index.js). */
+
+/* The Focus-Visible Law (X2): visible keyboard focus on every primitive. 2px ring, offset 2, in the theme's focus colour.
+   A field focused by the page on load (data-quiet-focus) shows a neutral ring until the person acts. */
+.y7-ui :where(a, button, input, select, textarea, [tabindex], [role="button"]):focus-visible,
+.y7-ui[data-focus-visible],
+.y7-ui :where([data-focus-visible]) {
+  outline: var(--y7-focus-width) solid var(--y7-color-focus-ring);
+  outline-offset: var(--y7-focus-offset);
+}
+.y7-ui :where([data-quiet-focus="true"]):focus-visible,
+.y7-ui :where([data-quiet-focus="true"])[data-focus-visible] {
+  outline-color: var(--y7-color-focus-ring-quiet);
+}
+.y7-on-inverse :where(a, button, input, select, textarea, [tabindex]):focus-visible,
+.y7-on-inverse :where([data-focus-visible]) {
+  outline-color: var(--y7-color-focus-ring-on-inverse);
+}
+
+/* One UI font for en, pl, uk and ru (T2); tabular numbers so counts never change a row's width (S5). */
+.y7-ui {
+  font-family: var(--y7-font-family-ui);
+  font-variant-numeric: tabular-nums;
+  box-sizing: border-box;
+}
+.y7-ui *, .y7-ui *::before, .y7-ui *::after { box-sizing: inherit; }
+
+/* Reduced motion: colour and border changes stay, every transform, slide and sheen stops. */
+@media (prefers-reduced-motion: reduce) {
+  .y7-ui, .y7-ui * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+}
