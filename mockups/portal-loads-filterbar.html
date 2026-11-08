@@ -60,8 +60,11 @@
   .file.none { border-style: dashed; color: var(--y7-color-text-secondary); background: transparent; }
   .status { text-align: right; display: grid; gap: 4px; justify-items: end; }
   .badge { display: inline-block; padding: 3px 8px; border-radius: var(--y7-radius-pill); font-size: var(--y7-font-size-2xs); font-weight: var(--y7-font-weight-bold); letter-spacing: .08em; text-transform: uppercase; color: var(--y7-color-status-done-fg); background: var(--y7-color-status-done-bg); border: 1px solid var(--y7-color-status-done-border); }
+  .badge.progress { color: var(--y7-color-status-progress-fg); background: var(--y7-color-status-progress-bg); border-color: var(--y7-color-status-progress-border); }
+  .badge.neutral { color: var(--y7-color-text-secondary); background: var(--y7-color-surface-raised); border-color: var(--y7-color-border-subtle); }
   .note { font-size: var(--y7-font-size-2xs); color: var(--y7-color-text-secondary); max-width: 24ch; }
   .pager { display: flex; justify-content: space-between; align-items: center; gap: var(--y7-space-md); margin-top: var(--y7-space-md); font-size: var(--y7-font-size-sm); color: var(--y7-color-text-secondary); }
+  .pager .nav2 { display: flex; align-items: center; gap: var(--y7-space-sm); white-space: nowrap; }
   .pager .ctl { height: 32px; display: inline-flex; }
   .pager .btn { height: 32px; padding: 0 var(--y7-space-md); display: inline-flex; align-items: center; border: 1px solid var(--y7-color-border-control); border-radius: var(--y7-radius-control); background: var(--y7-color-control-bg); color: var(--y7-color-text-primary); font-weight: var(--y7-font-weight-semibold); }
   .filtersbtn, .sheet { display: none; }
@@ -81,6 +84,13 @@
     .row { grid-template-columns: 1fr auto; gap: var(--y7-space-sm); }
     .row > .route, .row > .rec { grid-column: 1 / -1; }
     .row > .files { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; }
+    /* fix 5: on phones the status and its note read left to right under the files, full row width */
+    .row > .status { grid-column: 1 / -1; justify-items: start; text-align: left; }
+    .row > .status .note { max-width: none; }
+    /* fix 4: "Show 25" on its own row; Previous · Page · Next on one row that never overlaps */
+    .pager { flex-direction: column; align-items: stretch; gap: var(--y7-space-sm); }
+    .pager .nav2 { justify-content: space-between; }
+    .pager .nav2 .btn { height: var(--y7-size-control-touch); }
     .file { height: var(--y7-size-control-touch); }
     .sheet.open { display: block; position: fixed; inset: 0; background: rgb(5 6 7 / 0.55); }
     .sheet .panel { position: absolute; left: 0; right: 0; bottom: 0; max-height: 88vh; overflow: auto; background: var(--y7-color-surface-overlay); border-radius: var(--y7-radius-panel) var(--y7-radius-panel) 0 0; padding: var(--y7-space-lg); display: grid; gap: var(--y7-space-md); }
@@ -122,22 +132,10 @@
   <div class="results"><strong data-t="range"></strong><span aria-hidden="true">·</span><span data-t="updated"></span>
     <span class="ibtn" aria-label="Refresh"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></span></div>
 
-  <div class="list">
-    <div class="group"><span data-t="day"></span><span data-t="groupCount"></span></div>
-    <div class="row"><div class="rec"><div class="mono" data-t="recLabel"></div><div data-t="rec1"></div></div>
-      <div><div class="veh">2021 Toyota Camry</div><div class="mono">DEMO-1000</div></div>
-      <div class="route">IAA Demoville, TX → Sample Port, NJ</div>
-      <div class="files"><span class="file">BOL ✓</span><span class="file" data-t="photos11"></span></div>
-      <div class="status"><span class="badge">Delivered</span><span class="note" data-t="note1"></span></div></div>
-    <div class="row"><div class="rec"><div class="mono" data-t="recLabel"></div><div data-t="rec2"></div></div>
-      <div><div class="veh">2019 Honda Accord</div><div class="mono">DEMO-1001</div></div>
-      <div class="route">Copart Demoville, TX → Sample Port, NJ</div>
-      <div class="files"><span class="file none" data-t="noBol"></span><span class="file none" data-t="noPhotos"></span></div>
-      <div class="status"><span class="badge">Delivered</span></div></div>
-  </div>
+  <div class="list" data-list></div>
 
   <div class="pager"><span><span data-t="show"></span> <span class="ctl"><span class="v">25</span>▾</span></span>
-    <span><span class="btn" data-t="prev"></span> <span data-t="page"></span> <span class="btn" data-t="next"></span></span></div>
+    <span class="nav2"><span class="btn" data-t="prev"></span><span data-t="page"></span><span class="btn" data-t="next"></span></span></div>
 
   <aside class="annot" data-t="annot"></aside>
 </main>
@@ -153,35 +151,78 @@
 </div></div>
 
 <script>
+// Fictional data. Every count on the page is computed from these rows (fix 1): the range, each group's header and its
+// date are the rows actually shown; a group is the rows' own received day.
+const STATUS = { RECEIVED: 'neutral', LISTED: 'progress', CARRIER_ASSIGNED: 'progress', DELIVERED: 'done' };
+const CARS = [['2021', 'Toyota', 'Camry'], ['2019', 'Honda', 'Accord'], ['2022', 'Ford', 'F-150'], ['2018', 'BMW', 'X5'], ['2020', 'Tesla', 'Model 3'],
+  ['2017', 'Lexus', 'RX 350'], ['2023', 'Kia', 'Telluride'], ['2016', 'Audi', 'Q5'], ['2021', 'Mazda', 'CX-5']];
+const ROUTES = ['IAA Demoville, TX → Sample Port, NJ', 'Copart Demoville, TX → Sample Port, NJ'];
+const NOTE_DAYS = { 0: '2026-11-06', 3: '2026-11-07' };
+function makeRow(i, status, day) { const [y, mk, md] = CARS[i % CARS.length];
+  return { id: `DEMO-${1000 + i}`, veh: `${y} ${mk} ${md}`, route: ROUTES[i % 2], status, day, time: `${String(8 + (i % 9)).padStart(2, '0')}:${i % 2 ? '40' : '15'}`,
+    bol: i % 3 !== 1, photos: [11, 0, 4, 6, 0, 9][i % 6], note: status === 'DELIVERED' && NOTE_DAYS[i] ? NOTE_DAYS[i] : null }; }
+const q = new URLSearchParams(location.search); const lang = q.get('lang') === 'ru' ? 'ru' : 'en'; const empty = !!q.get('empty');
+// filtered: Status = Delivered, Received Nov 6 – 7 → 9 rows on those two days. Empty: the first page of 771 active loads.
+const ROWS = empty
+  ? Array.from({ length: 25 }, (_, i) => makeRow(i, ['LISTED', 'CARRIER_ASSIGNED', 'DELIVERED', 'RECEIVED'][i % 4], ['2026-11-07', '2026-11-06', '2026-11-05'][Math.floor(i / 9)]))
+  : Array.from({ length: 9 }, (_, i) => makeRow(i, 'DELIVERED', i < 5 ? '2026-11-07' : '2026-11-06'));
+const TOTAL = empty ? 771 : 9;
+
+const PR = new Intl.PluralRules(lang === 'ru' ? 'ru' : 'en');
 const W = {
   en: { 'nav.loads': 'Loads', 'nav.warehouses': 'Warehouses', 'nav.billing': 'Billing', 'nav.co': 'CO requests', title: 'Your loads',
-    counts: '771 active · <a href="#">421 closed</a>', search: 'Search vehicle, load ID, VIN, city, carrier', filtersN: 'Filters (2)', filters: 'Filters',
+    counts: () => '771 active · <a href="#">421 closed</a>', search: 'Search vehicle, load ID, VIN, city, carrier', searchShort: 'Search',
+    filtersN: n => n ? `Filters (${n})` : 'Filters', filters: 'Filters',
     status: 'Status', sort: 'Sort', group: 'Group by', auction: 'Auction', received: 'Received',
-    vDelivered: 'Delivered', vNewest: 'Newest first', vByDay: 'By received day', vAllAuctions: 'All auctions', vRange: 'Nov 6 – 7', vAny: 'Any date',
-    chipStatus: 'Status: Delivered', chipReceived: 'Received: Nov 6 – 7', clearAll: 'Clear all', range: '1–25 of 9 loads', updated: 'Updated 1:31 PM',
-    day: 'Thursday, November 5, 2026', groupCount: 'Loads: 9', recLabel: 'RECEIVED', rec1: 'Nov 6, 10:15 ET', rec2: 'Nov 7, 09:40 ET',
-    photos11: 'Photos 11', noBol: 'No BOL yet', noPhotos: 'No photos yet',
-    note1: 'Delivered Nov 6 · per Central Dispatch · Y7 is checking the documents',
-    show: 'Show', prev: 'Previous', next: 'Next', page: 'Page 1 of 1', clear: 'Clear', apply: 'Apply',
-    annot: 'MOCKUP for approval (UXSYS-1 Stage 2). Row 1: search, 40 px. Row 2: five controls, one height (36 px), one radius (12 px), one border (measured ≥ 3:1), all labelled above; long words truncate inside a control, never resize the bar. Received is one control: "Any date" in muted words when empty, a range when set, × clears it. Applied filters are chips with ×, then Clear all; the count reflects the filters. Updated time + ↻ live on the results line (live list later, Stage 2 build). Loads per page moved to the footer. At 390: search + "Filters (N)" → a sheet with the same controls, Apply / Clear. Fictional data.' },
+    st: { active: 'Active loads', RECEIVED: 'Received', LISTED: 'Listed', CARRIER_ASSIGNED: 'Carrier assigned', DELIVERED: 'Delivered' },
+    vNewest: 'Newest first', vByDay: 'By received day', vAllAuctions: 'All auctions', vRange: 'Nov 6 – 7', vAny: 'Any date',
+    chip: (k, v) => `${k}: ${v}`, clearAll: 'Clear all',
+    range: (a, b, t) => `${a}–${b} of ${t.toLocaleString('en-US')} ${t === 1 ? 'load' : 'loads'}`,
+    groupCount: n => `Loads: ${n}`, updated: 'Updated 1:31 PM', recLabel: 'Received',
+    day: d => new Intl.DateTimeFormat('en-US', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }).format(new Date(d + 'T12:00:00Z')),
+    short: d => new Intl.DateTimeFormat('en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' }).format(new Date(d + 'T12:00:00Z')),
+    photos: n => `Photos ${n}`, noBol: 'No BOL yet', noPhotos: 'No photos yet',
+    note: d => `Delivered ${W.en.short(d)} · per Central Dispatch · Y7 is checking the documents`,
+    show: 'Show', prev: 'Previous', next: 'Next', page: 'Page 1 of 1', pageEmpty: 'Page 1 of 31', clear: 'Clear', apply: 'Apply',
+    annot: 'MOCKUP v2 for approval (UXSYS-1 Stage 2), with Sergii’s 5 fixes: true counts from the rows shown; status words translated in the filter, chips and badges; plural rules; the 390 footer on two rows and a short search placeholder; the status note left-aligned under the badge on phones. Fictional data.' },
   ru: { 'nav.loads': 'Лоады', 'nav.warehouses': 'Склады', 'nav.billing': 'Счета', 'nav.co': 'Запросы CO', title: 'Ваши лоады',
-    counts: '771 активных · <a href="#">421 закрытый</a>', search: 'Поиск: машина, Load ID, VIN, город, перевозчик', filtersN: 'Фильтры (2)', filters: 'Фильтры',
+    counts: () => 'Активных: 771 · <a href="#">закрытых: 421</a>', search: 'Поиск: машина, Load ID, VIN, город, перевозчик', searchShort: 'Поиск',
+    filtersN: n => n ? `Фильтры (${n})` : 'Фильтры', filters: 'Фильтры',
     status: 'Статус', sort: 'Сортировка', group: 'Группировать по', auction: 'Аукцион', received: 'Получен',
-    vDelivered: 'Delivered', vNewest: 'Сначала новые', vByDay: 'По дням получения', vAllAuctions: 'Все аукционы', vRange: '6–7 нояб.', vAny: 'Любая дата',
-    chipStatus: 'Статус: Delivered', chipReceived: 'Получен: 6–7 нояб.', clearAll: 'Сбросить всё', range: '1–25 из 9 лоадов', updated: 'Обновлено 13:31',
-    day: 'четверг, 5 ноября 2026 г.', groupCount: 'Лоадов: 9', recLabel: 'ПОЛУЧЕН', rec1: '6 нояб., 10:15 ET', rec2: '7 нояб., 09:40 ET',
-    photos11: 'Фото 11', noBol: 'BOL ещё нет', noPhotos: 'Фото ещё нет',
-    note1: 'Доставлен 6 нояб. · по данным Central Dispatch · Y7 проверяет документы',
-    show: 'Показывать', prev: 'Назад', next: 'Далее', page: 'Страница 1 из 1', clear: 'Сбросить', apply: 'Применить',
-    annot: 'МАКЕТ на согласование (UXSYS-1 Stage 2). Строка 1: поиск. Строка 2: пять полей одной высоты, одного радиуса и рамки, подписи сверху; длинные слова обрезаются внутри поля. «Получен» — одно поле: пусто = «Любая дата», задано = диапазон, × сбрасывает. Применённые фильтры — чипы с × и «Сбросить всё». На 390: поиск + «Фильтры (N)» → лист с теми же полями, «Применить» / «Сбросить». Данные вымышленные.' },
+    st: { active: 'Активные лоады', RECEIVED: 'Получен', LISTED: 'Выставлен', CARRIER_ASSIGNED: 'Перевозчик назначен', DELIVERED: 'Доставлен' },
+    vNewest: 'Сначала новые', vByDay: 'По дням получения', vAllAuctions: 'Все аукционы', vRange: '6–7 нояб.', vAny: 'Любая дата',
+    chip: (k, v) => `${k}: ${v}`, clearAll: 'Сбросить всё',
+    // "из N" takes the genitive: из 1 / 21 / 771 лоада, из 2 / 9 / 25 лоадов (Intl.PluralRules 'ru': one → лоада)
+    range: (a, b, t) => `${a}–${b} из ${t.toLocaleString('ru-RU')} ${PR.select(t) === 'one' ? 'лоада' : 'лоадов'}`,
+    groupCount: n => `Лоадов: ${n}`, updated: 'Обновлено 13:31', recLabel: 'Получен',
+    day: d => new Intl.DateTimeFormat('ru-RU', { weekday: 'long', month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }).format(new Date(d + 'T12:00:00Z')),
+    short: d => new Intl.DateTimeFormat('ru-RU', { month: 'short', day: 'numeric', timeZone: 'UTC' }).format(new Date(d + 'T12:00:00Z')),
+    photos: n => `Фото ${n}`, noBol: 'BOL ещё нет', noPhotos: 'Фото ещё нет',
+    note: d => `Доставлен ${W.ru.short(d)} · по данным Central Dispatch · Y7 проверяет документы`,
+    show: 'Показывать', prev: 'Назад', next: 'Далее', page: 'Страница 1 из 1', pageEmpty: 'Страница 1 из 31', clear: 'Сбросить', apply: 'Применить',
+    annot: 'МАКЕТ v2 на согласование (UXSYS-1 Stage 2) с пятью правками Сергея: верные счётчики по показанным строкам; статусы переведены в фильтре, чипах и бейджах; правила множественного числа; на 390 подвал в две строки и короткая подсказка поиска; пояснение к статусу на телефоне слева под бейджем. Данные вымышленные.' },
 };
-const q = new URLSearchParams(location.search); const lang = q.get('lang') === 'ru' ? 'ru' : 'en'; const w = W[lang];
-document.documentElement.lang = lang;
-if (q.get('empty')) { w.vDelivered = lang === 'ru' ? 'Активные лоады' : 'Active loads'; w.vRange = w.vAny; w.filtersN = w.filters; w.range = lang === 'ru' ? '1–25 из 771 лоада' : '1–25 of 771 loads';
-  document.querySelector('[data-chips]').remove(); document.querySelectorAll('.controls .x, .sheet .x').forEach(e => e.remove());
+const w = W[lang]; document.documentElement.lang = lang;
+const statusValue = empty ? w.st.active : w.st.DELIVERED;
+const T = { ...w, counts: w.counts(), filtersN: w.filtersN(empty ? 0 : 2), vDelivered: statusValue,
+  vRange: empty ? w.vAny : w.vRange, chipStatus: w.chip(w.status, w.st.DELIVERED), chipReceived: w.chip(w.received, w.vRange),
+  range: w.range(1, ROWS.length, TOTAL), page: empty ? w.pageEmpty : w.page };
+if (empty) { document.querySelector('[data-chips]').remove(); document.querySelectorAll('.controls .x, .sheet .x').forEach(e => e.remove());
   document.querySelectorAll('[data-t="vRange"]').forEach(e => e.classList.add('muted')); }
-document.querySelectorAll('[data-t]').forEach(e => { e.innerHTML = w[e.dataset.t] ?? e.dataset.t; });
-document.querySelectorAll('[data-tp]').forEach(e => { e.placeholder = w[e.dataset.tp]; });
+document.querySelectorAll('[data-t]').forEach(e => { const v = T[e.dataset.t]; e.innerHTML = typeof v === 'string' ? v : e.dataset.t; });
+const phone = matchMedia('(max-width: 680px)').matches;
+document.querySelectorAll('[data-tp]').forEach(e => { e.placeholder = phone ? w.searchShort : w.search; });   // fix 4
+
+// the list: groups are the rows' own received days; each header counts its own rows (fix 1)
+const groups = []; for (const r of ROWS) { let g = groups.find(x => x.day === r.day); if (!g) groups.push(g = { day: r.day, rows: [] }); g.rows.push(r); }
+const esc = s => String(s).replace(/[&<>]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;' })[c]);
+document.querySelector('[data-list]').innerHTML = groups.map(g => `<div class="group"><span>${esc(w.day(g.day))}</span><span>${esc(w.groupCount(g.rows.length))}</span></div>` +
+  g.rows.map(r => `<div class="row"><div class="rec"><div class="mono">${esc(w.recLabel)}</div><div>${esc(w.short(r.day))}, ${r.time} ET</div></div>
+    <div><div class="veh">${esc(r.veh)}</div><div class="mono">${r.id}</div></div><div class="route">${esc(r.route)}</div>
+    <div class="files">${r.bol ? '<span class="file">BOL ✓</span>' : `<span class="file none">${esc(w.noBol)}</span>`}${r.photos ? `<span class="file">${esc(w.photos(r.photos))}</span>` : `<span class="file none">${esc(w.noPhotos)}</span>`}</div>
+    <div class="status"><span class="badge ${STATUS[r.status]}">${esc(w.st[r.status])}</span>${r.note ? `<span class="note">${esc(w.note(r.note))}</span>` : ''}</div></div>`).join('')).join('');
+// self-check for the shot script: the range, the headers and the rows agree
+window.__mockCounts = { range: T.range, rows: ROWS.length, groups: groups.map(g => [g.day, g.rows.length]) };
 if (q.get('sheet')) document.querySelector('.sheet').classList.add('open');
 </script>
 </body>
