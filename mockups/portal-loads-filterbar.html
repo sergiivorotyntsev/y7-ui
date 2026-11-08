@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<!--
+  UXSYS-1 Stage 2 pilot — MOCKUP (design-first, ruling P1): the customer portal Loads filter bar, built from the y7-ui
+  site tokens (tokens/dist/site.css). For Claude, then Sergii. Spec: PASTE_TO_PORTALROW1_DELIVERED_ERROR_AND_FILTER_BAR.md §3.
+  Static HTML, fictional data only. ?lang=ru for Russian; ?sheet=1 opens the phone "Filters" sheet; ?empty=1 shows no filters applied.
+  Not product code: the build comes after approval, on the y7-ui primitives, and is diffed against this page.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockup · Portal Loads filter bar (UXSYS-1 Stage 2)</title>
+<link rel="stylesheet" href="../tokens/dist/site.css">
+<style>
+  /* Only tokens below: --y7-* from tokens/dist/site.css. The display face is the site's Oswald stack. */
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--y7-color-surface-page); color: var(--y7-color-text-primary); font-family: var(--y7-font-family-ui); font-variant-numeric: tabular-nums; }
+  .top { background: var(--y7-color-surface-inverse); color: var(--y7-color-text-on-inverse); }
+  .top-inner { max-width: 1440px; margin: 0 auto; padding: var(--y7-space-md) var(--y7-space-xl); display: flex; align-items: center; gap: var(--y7-space-xl); }
+  .brand { font: 700 18px/1 'Oswald', 'Arial Narrow', sans-serif; letter-spacing: .06em; }
+  .brand b { color: var(--y7-color-accent-on-inverse); }
+  .nav { display: flex; gap: var(--y7-space-lg); font-size: var(--y7-font-size-sm); font-weight: var(--y7-font-weight-semibold); letter-spacing: .06em; text-transform: uppercase; color: var(--y7-color-text-on-inverse-secondary); }
+  .nav .on { color: var(--y7-color-text-on-inverse); border-bottom: 2px solid var(--y7-color-accent-on-inverse); padding-bottom: 4px; }
+  .shell { max-width: 1440px; margin: 0 auto; padding: var(--y7-space-xl); }
+  h1 { font: 700 34px/0.98 'Oswald', 'Arial Narrow', sans-serif; text-transform: uppercase; margin: var(--y7-space-lg) 0 var(--y7-space-xs); }
+  .counts { font-size: var(--y7-font-size-sm); color: var(--y7-color-text-secondary); margin-bottom: var(--y7-space-lg); }
+  .counts a { color: var(--y7-color-text-primary); }
+
+  /* THE BAR — row 1: search (40px); row 2: five equal controls, one label style (above), one height, one radius */
+  .bar { display: grid; gap: var(--y7-space-md); }
+  .search { position: relative; }
+  .search input { width: 100%; height: 40px; padding: 0 var(--y7-space-md) 0 38px; border: 1px solid var(--y7-color-border-control); border-radius: var(--y7-radius-control); background: var(--y7-color-control-bg); font: inherit; font-size: var(--y7-font-size-md); color: var(--y7-color-text-primary); }
+  .search input::placeholder { color: var(--y7-color-control-placeholder); }
+  .search svg { position: absolute; left: 12px; top: 12px; }
+  .controls { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)) minmax(0, 1.25fr); gap: var(--y7-space-md); }
+  .field { display: grid; gap: var(--y7-space-xxs); min-width: 0; }
+  .label { font-size: var(--y7-font-size-xs); font-weight: var(--y7-font-weight-medium); color: var(--y7-color-text-secondary); }
+  .ctl { height: var(--y7-size-control-md); display: flex; align-items: center; gap: var(--y7-space-sm); padding: 0 var(--y7-space-md); border: 1px solid var(--y7-color-border-control); border-radius: var(--y7-radius-control); background: var(--y7-color-control-bg); font-size: var(--y7-font-size-md); min-width: 0; }
+  .ctl .v { flex: 1; min-width: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .ctl .muted { color: var(--y7-color-control-placeholder); }
+  .ctl .x { width: 24px; height: 24px; display: grid; place-items: center; border-radius: var(--y7-radius-pill); color: var(--y7-color-text-secondary); }
+  .chips { display: flex; flex-wrap: wrap; align-items: center; gap: var(--y7-space-sm); }
+  .chip { display: inline-flex; align-items: center; gap: var(--y7-space-xs); height: 28px; padding: 0 var(--y7-space-xs) 0 var(--y7-space-sm); border: 1px solid var(--y7-color-border-subtle); border-radius: var(--y7-radius-pill); background: var(--y7-color-surface-panel); font-size: var(--y7-font-size-xs); font-weight: var(--y7-font-weight-semibold); }
+  .chip .x { width: 20px; height: 20px; display: grid; place-items: center; color: var(--y7-color-text-secondary); }
+  .clear { margin-left: auto; font-size: var(--y7-font-size-sm); font-weight: var(--y7-font-weight-semibold); text-decoration: underline; text-underline-offset: 3px; }
+
+  /* results line: "1–25 of 9 loads · Updated 1:31 PM ↻" — fixed width numbers (S5), the ↻ a small control */
+  .results { display: flex; align-items: center; gap: var(--y7-space-sm); margin: var(--y7-space-lg) 0 var(--y7-space-sm); font-size: var(--y7-font-size-sm); color: var(--y7-color-text-secondary); }
+  .results strong { color: var(--y7-color-text-primary); font-weight: var(--y7-font-weight-semibold); }
+  .ibtn { width: 32px; height: 32px; display: grid; place-items: center; border: 1px solid var(--y7-color-border-control); border-radius: var(--y7-radius-control); background: var(--y7-color-control-bg); }
+
+  /* list (context only: today's rows, simplified) */
+  .list { border: 1px solid var(--y7-color-border-subtle); border-radius: var(--y7-radius-card); overflow: hidden; background: var(--y7-color-surface-panel); }
+  .group { padding: var(--y7-space-sm) var(--y7-space-lg); background: var(--y7-color-surface-raised); font-size: var(--y7-font-size-sm); font-weight: var(--y7-font-weight-semibold); display: flex; justify-content: space-between; }
+  .row { display: grid; grid-template-columns: 150px minmax(0, 1.2fr) minmax(0, 1.4fr) 148px 170px; gap: var(--y7-space-lg); padding: var(--y7-space-lg); border-top: 1px solid var(--y7-color-border-subtle); align-items: center; font-size: var(--y7-font-size-sm); }
+  .row .veh { font-weight: var(--y7-font-weight-semibold); font-size: var(--y7-font-size-md); }
+  .row .mono { font-family: var(--y7-font-family-mono); font-size: var(--y7-font-size-xs); color: var(--y7-color-text-secondary); }
+  .files { display: grid; gap: 6px; }
+  .file { height: 30px; display: grid; place-items: center; border: 1px solid var(--y7-color-border-control); border-radius: var(--y7-radius-control); font-size: var(--y7-font-size-xs); background: var(--y7-color-control-bg); }
+  .file.none { border-style: dashed; color: var(--y7-color-text-secondary); background: transparent; }
+  .status { text-align: right; display: grid; gap: 4px; justify-items: end; }
+  .badge { display: inline-block; padding: 3px 8px; border-radius: var(--y7-radius-pill); font-size: var(--y7-font-size-2xs); font-weight: var(--y7-font-weight-bold); letter-spacing: .08em; text-transform: uppercase; color: var(--y7-color-status-done-fg); background: var(--y7-color-status-done-bg); border: 1px solid var(--y7-color-status-done-border); }
+  .note { font-size: var(--y7-font-size-2xs); color: var(--y7-color-text-secondary); max-width: 24ch; }
+  .pager { display: flex; justify-content: space-between; align-items: center; gap: var(--y7-space-md); margin-top: var(--y7-space-md); font-size: var(--y7-font-size-sm); color: var(--y7-color-text-secondary); }
+  .pager .ctl { height: 32px; display: inline-flex; }
+  .pager .btn { height: 32px; padding: 0 var(--y7-space-md); display: inline-flex; align-items: center; border: 1px solid var(--y7-color-border-control); border-radius: var(--y7-radius-control); background: var(--y7-color-control-bg); color: var(--y7-color-text-primary); font-weight: var(--y7-font-weight-semibold); }
+  .filtersbtn, .sheet { display: none; }
+  .annot { margin-top: var(--y7-space-2xl); padding: var(--y7-space-md) var(--y7-space-lg); border: 1px dashed var(--y7-color-border-strong); border-radius: var(--y7-radius-control); font-size: var(--y7-font-size-xs); color: var(--y7-color-text-secondary); max-width: 900px; }
+
+  /* 390: the search stays; everything else behind "Filters (2)", a sheet with the same controls, Apply / Clear */
+  @media (max-width: 680px) {
+    .top-inner { padding: var(--y7-space-md); gap: var(--y7-space-md); }
+    .nav { display: none; }
+    .shell { padding: var(--y7-space-lg); }
+    h1 { font-size: 28px; }
+    .toprow { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--y7-space-sm); }
+    .search input { height: var(--y7-size-control-touch); font-size: var(--y7-font-size-lg); }
+    .search svg { top: 14px; }
+    .filtersbtn { display: inline-flex; align-items: center; gap: var(--y7-space-xs); height: var(--y7-size-control-touch); padding: 0 var(--y7-space-md); border: 1px solid var(--y7-color-border-control); border-radius: var(--y7-radius-control); background: var(--y7-color-control-bg); font-weight: var(--y7-font-weight-semibold); font-size: var(--y7-font-size-md); white-space: nowrap; }
+    .controls { display: none; }
+    .row { grid-template-columns: 1fr auto; gap: var(--y7-space-sm); }
+    .row > .route, .row > .rec { grid-column: 1 / -1; }
+    .row > .files { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; }
+    .file { height: var(--y7-size-control-touch); }
+    .sheet.open { display: block; position: fixed; inset: 0; background: rgb(5 6 7 / 0.55); }
+    .sheet .panel { position: absolute; left: 0; right: 0; bottom: 0; max-height: 88vh; overflow: auto; background: var(--y7-color-surface-overlay); border-radius: var(--y7-radius-panel) var(--y7-radius-panel) 0 0; padding: var(--y7-space-lg); display: grid; gap: var(--y7-space-md); }
+    .sheet h2 { margin: 0; font: 700 22px/1 'Oswald', 'Arial Narrow', sans-serif; text-transform: uppercase; display: flex; justify-content: space-between; align-items: center; }
+    .sheet .ctl { height: var(--y7-size-control-touch); font-size: var(--y7-font-size-lg); }
+    .sheet .acts { display: grid; grid-template-columns: 1fr 1.4fr; gap: var(--y7-space-sm); margin-top: var(--y7-space-sm); }
+    .sheet .acts span { height: var(--y7-size-control-touch); display: grid; place-items: center; border-radius: var(--y7-radius-control); font-weight: var(--y7-font-weight-semibold); border: 1px solid var(--y7-color-border-control); }
+    .sheet .acts .primary { background: var(--y7-color-accent-gradient); color: var(--y7-color-text-on-accent); border: 0; }
+  }
+</style>
+</head>
+<body>
+<header class="top"><div class="top-inner"><div class="brand"><b>Y7</b> LOGISTICS</div>
+  <nav class="nav"><span class="on" data-t="nav.loads"></span><span data-t="nav.warehouses"></span><span data-t="nav.billing"></span><span data-t="nav.co"></span></nav></div></header>
+<main class="shell">
+  <h1 data-t="title"></h1>
+  <div class="counts" data-t="counts"></div>
+
+  <section class="bar" aria-label="Filters">
+    <div class="toprow">
+      <label class="search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input type="search" data-tp="search"></label>
+      <span class="filtersbtn"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 5h18l-7 8v6l-4-2v-4z"/></svg><span data-t="filtersN"></span></span>
+    </div>
+    <div class="controls">
+      <div class="field"><span class="label" data-t="status"></span><div class="ctl"><span class="v" data-t="vDelivered"></span>▾</div></div>
+      <div class="field"><span class="label" data-t="sort"></span><div class="ctl"><span class="v" data-t="vNewest"></span>▾</div></div>
+      <div class="field"><span class="label" data-t="group"></span><div class="ctl"><span class="v" data-t="vByDay"></span>▾</div></div>
+      <div class="field"><span class="label" data-t="auction"></span><div class="ctl"><span class="v" data-t="vAllAuctions"></span>▾</div></div>
+      <div class="field"><span class="label" data-t="received"></span><div class="ctl"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg><span class="v" data-t="vRange"></span><span class="x" aria-hidden="true">✕</span></div></div>
+    </div>
+    <div class="chips" data-chips>
+      <span class="chip"><span data-t="chipStatus"></span><span class="x" aria-hidden="true">✕</span></span>
+      <span class="chip"><span data-t="chipReceived"></span><span class="x" aria-hidden="true">✕</span></span>
+      <span class="clear" data-t="clearAll"></span>
+    </div>
+  </section>
+
+  <div class="results"><strong data-t="range"></strong><span aria-hidden="true">·</span><span data-t="updated"></span>
+    <span class="ibtn" aria-label="Refresh"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></span></div>
+
+  <div class="list">
+    <div class="group"><span data-t="day"></span><span data-t="groupCount"></span></div>
+    <div class="row"><div class="rec"><div class="mono" data-t="recLabel"></div><div data-t="rec1"></div></div>
+      <div><div class="veh">2021 Toyota Camry</div><div class="mono">DEMO-1000</div></div>
+      <div class="route">IAA Demoville, TX → Sample Port, NJ</div>
+      <div class="files"><span class="file">BOL ✓</span><span class="file" data-t="photos11"></span></div>
+      <div class="status"><span class="badge">Delivered</span><span class="note" data-t="note1"></span></div></div>
+    <div class="row"><div class="rec"><div class="mono" data-t="recLabel"></div><div data-t="rec2"></div></div>
+      <div><div class="veh">2019 Honda Accord</div><div class="mono">DEMO-1001</div></div>
+      <div class="route">Copart Demoville, TX → Sample Port, NJ</div>
+      <div class="files"><span class="file none" data-t="noBol"></span><span class="file none" data-t="noPhotos"></span></div>
+      <div class="status"><span class="badge">Delivered</span></div></div>
+  </div>
+
+  <div class="pager"><span><span data-t="show"></span> <span class="ctl"><span class="v">25</span>▾</span></span>
+    <span><span class="btn" data-t="prev"></span> <span data-t="page"></span> <span class="btn" data-t="next"></span></span></div>
+
+  <aside class="annot" data-t="annot"></aside>
+</main>
+
+<div class="sheet" role="dialog" aria-modal="true"><div class="panel">
+  <h2><span data-t="filters"></span><span aria-hidden="true">✕</span></h2>
+  <div class="field"><span class="label" data-t="status"></span><div class="ctl"><span class="v" data-t="vDelivered"></span>▾</div></div>
+  <div class="field"><span class="label" data-t="sort"></span><div class="ctl"><span class="v" data-t="vNewest"></span>▾</div></div>
+  <div class="field"><span class="label" data-t="group"></span><div class="ctl"><span class="v" data-t="vByDay"></span>▾</div></div>
+  <div class="field"><span class="label" data-t="auction"></span><div class="ctl"><span class="v" data-t="vAllAuctions"></span>▾</div></div>
+  <div class="field"><span class="label" data-t="received"></span><div class="ctl"><span class="v" data-t="vRange"></span><span class="x">✕</span></div></div>
+  <div class="acts"><span data-t="clear"></span><span class="primary" data-t="apply"></span></div>
+</div></div>
+
+<script>
+const W = {
+  en: { 'nav.loads': 'Loads', 'nav.warehouses': 'Warehouses', 'nav.billing': 'Billing', 'nav.co': 'CO requests', title: 'Your loads',
+    counts: '771 active · <a href="#">421 closed</a>', search: 'Search vehicle, load ID, VIN, city, carrier', filtersN: 'Filters (2)', filters: 'Filters',
+    status: 'Status', sort: 'Sort', group: 'Group by', auction: 'Auction', received: 'Received',
+    vDelivered: 'Delivered', vNewest: 'Newest first', vByDay: 'By received day', vAllAuctions: 'All auctions', vRange: 'Nov 6 – 7', vAny: 'Any date',
+    chipStatus: 'Status: Delivered', chipReceived: 'Received: Nov 6 – 7', clearAll: 'Clear all', range: '1–25 of 9 loads', updated: 'Updated 1:31 PM',
+    day: 'Thursday, November 5, 2026', groupCount: 'Loads: 9', recLabel: 'RECEIVED', rec1: 'Nov 6, 10:15 ET', rec2: 'Nov 7, 09:40 ET',
+    photos11: 'Photos 11', noBol: 'No BOL yet', noPhotos: 'No photos yet',
+    note1: 'Delivered Nov 6 · per Central Dispatch · Y7 is checking the documents',
+    show: 'Show', prev: 'Previous', next: 'Next', page: 'Page 1 of 1', clear: 'Clear', apply: 'Apply',
+    annot: 'MOCKUP for approval (UXSYS-1 Stage 2). Row 1: search, 40 px. Row 2: five controls, one height (36 px), one radius (12 px), one border (measured ≥ 3:1), all labelled above; long words truncate inside a control, never resize the bar. Received is one control: "Any date" in muted words when empty, a range when set, × clears it. Applied filters are chips with ×, then Clear all; the count reflects the filters. Updated time + ↻ live on the results line (live list later, Stage 2 build). Loads per page moved to the footer. At 390: search + "Filters (N)" → a sheet with the same controls, Apply / Clear. Fictional data.' },
+  ru: { 'nav.loads': 'Лоады', 'nav.warehouses': 'Склады', 'nav.billing': 'Счета', 'nav.co': 'Запросы CO', title: 'Ваши лоады',
+    counts: '771 активных · <a href="#">421 закрытый</a>', search: 'Поиск: машина, Load ID, VIN, город, перевозчик', filtersN: 'Фильтры (2)', filters: 'Фильтры',
+    status: 'Статус', sort: 'Сортировка', group: 'Группировать по', auction: 'Аукцион', received: 'Получен',
+    vDelivered: 'Delivered', vNewest: 'Сначала новые', vByDay: 'По дням получения', vAllAuctions: 'Все аукционы', vRange: '6–7 нояб.', vAny: 'Любая дата',
+    chipStatus: 'Статус: Delivered', chipReceived: 'Получен: 6–7 нояб.', clearAll: 'Сбросить всё', range: '1–25 из 9 лоадов', updated: 'Обновлено 13:31',
+    day: 'четверг, 5 ноября 2026 г.', groupCount: 'Лоадов: 9', recLabel: 'ПОЛУЧЕН', rec1: '6 нояб., 10:15 ET', rec2: '7 нояб., 09:40 ET',
+    photos11: 'Фото 11', noBol: 'BOL ещё нет', noPhotos: 'Фото ещё нет',
+    note1: 'Доставлен 6 нояб. · по данным Central Dispatch · Y7 проверяет документы',
+    show: 'Показывать', prev: 'Назад', next: 'Далее', page: 'Страница 1 из 1', clear: 'Сбросить', apply: 'Применить',
+    annot: 'МАКЕТ на согласование (UXSYS-1 Stage 2). Строка 1: поиск. Строка 2: пять полей одной высоты, одного радиуса и рамки, подписи сверху; длинные слова обрезаются внутри поля. «Получен» — одно поле: пусто = «Любая дата», задано = диапазон, × сбрасывает. Применённые фильтры — чипы с × и «Сбросить всё». На 390: поиск + «Фильтры (N)» → лист с теми же полями, «Применить» / «Сбросить». Данные вымышленные.' },
+};
+const q = new URLSearchParams(location.search); const lang = q.get('lang') === 'ru' ? 'ru' : 'en'; const w = W[lang];
+document.documentElement.lang = lang;
+if (q.get('empty')) { w.vDelivered = lang === 'ru' ? 'Активные лоады' : 'Active loads'; w.vRange = w.vAny; w.filtersN = w.filters; w.range = lang === 'ru' ? '1–25 из 771 лоада' : '1–25 of 771 loads';
+  document.querySelector('[data-chips]').remove(); document.querySelectorAll('.controls .x, .sheet .x').forEach(e => e.remove());
+  document.querySelectorAll('[data-t="vRange"]').forEach(e => e.classList.add('muted')); }
+document.querySelectorAll('[data-t]').forEach(e => { e.innerHTML = w[e.dataset.t] ?? e.dataset.t; });
+document.querySelectorAll('[data-tp]').forEach(e => { e.placeholder = w[e.dataset.tp]; });
+if (q.get('sheet')) document.querySelector('.sheet').classList.add('open');
+</script>
+</body>
+</html>
