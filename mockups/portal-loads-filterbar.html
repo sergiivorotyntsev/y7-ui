@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
   UXSYS-1 Stage 2 pilot — MOCKUP (design-first, ruling P1): the customer portal Loads filter bar, built from the y7-ui
-  site tokens (tokens/dist/site.css). For Claude, then Sergii. Spec: PASTE_TO_PORTALROW1_DELIVERED_ERROR_AND_FILTER_BAR.md §3.
+  site tokens (tokens/dist/site.css). For Claude, then Sergii. Spec: the UXSYS-1 filter-bar brief, section 3.
   Static HTML, fictional data only. ?lang=ru for Russian; ?sheet=1 opens the phone "Filters" sheet; ?empty=1 shows no filters applied.
   Not product code: the build comes after approval, on the y7-ui primitives, and is diffed against this page.
 -->
@@ -179,7 +179,7 @@ const WH = [{ name: 'Sample Port Warehouse, NJ', colour: '#2f6f4e' }, { name: 'D
 const FILES = [{ count: 12, bol: 'photo' }, { count: 3, bol: 'pdf' }, { count: 0, bol: null }, { count: 7, bol: null }, { count: 9, bol: 'pdf' }, { count: 5, bol: 'photo' }];
 const NOTE_DAYS = { 0: '2026-11-06', 3: '2026-11-07' };
 function makeRow(i, status, day) { const [y, mk, md] = CARS[i % CARS.length]; const wh = WH[i % 2];
-  return { id: `DEMO-${1000 + i}`, vin: `1DEMO${String(100000000000 + i * 7919).slice(-12)}`, veh: `${y} ${mk} ${md}`,
+  return { id: `DEMO-${1000 + i}`, vin: `DEMO-VIN-${1000 + i}`, veh: `${y} ${mk} ${md}`,
     auction: i % 2 ? 'COPART' : 'IAA', from: 'Demoville, TX', wh, miles: 1180 + i * 13, carrier: status === 'LISTED' || status === 'RECEIVED' ? null : 'Example Carrier LLC',
     carrierPrice: 900 + i * 15, fee: 50, status, day, time: `${String(8 + (i % 9)).padStart(2, '0')}:${i % 2 ? '40' : '15'}`,
     files: FILES[i % FILES.length], note: status === 'DELIVERED' && NOTE_DAYS[i] ? NOTE_DAYS[i] : null }; }
@@ -207,7 +207,7 @@ const W = {
     awaiting: 'Awaiting a carrier', needsYou: 'Needs you: send the title copy', mi: n => `${n.toLocaleString('en-US')} mi`,
     note: d => `Delivered ${W.en.short(d)} · per Central Dispatch · Y7 is checking the documents`,
     show: 'Show', prev: 'Previous', next: 'Next', page: 'Page 1 of 1', pageEmpty: 'Page 1 of 31', clear: 'Clear', apply: 'Apply',
-    annot: 'MOCKUP v2 for approval (UXSYS-1 Stage 2), with Sergii’s 5 fixes: true counts from the rows shown; status words translated in the filter, chips and badges; plural rules; the 390 footer on two rows and a short search placeholder; the status note left-aligned under the badge on phones. Fictional data.' },
+    annot: 'MOCKUP v3 (UXSYS-1 Stage 2): every fact of today\u2019s row restored (VIN and Load ID with copy, auction, route with the warehouse colour and miles, carrier, carrier price, Y7 fee, received time); ONE BOL & photos control; filled status badges by the L1 colours with a status bar at the left; darker text; groups as cards. Kept: true counts, translated statuses, plural rules, the two-row phone footer and short search placeholder, the status note left-aligned on phones. Fictional data.' },
   ru: { 'nav.loads': 'Лоады', 'nav.warehouses': 'Склады', 'nav.billing': 'Счета', 'nav.co': 'Запросы CO', title: 'Ваши лоады',
     counts: () => 'Активных: 771 · <a href="#">закрытых: 421</a>', search: 'Поиск: машина, Load ID, VIN, город, перевозчик', searchShort: 'Поиск',
     filtersN: n => n ? `Фильтры (${n})` : 'Фильтры', filters: 'Фильтры',

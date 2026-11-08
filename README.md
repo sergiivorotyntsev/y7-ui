@@ -1,5 +1,9 @@
 # @sergiivorotyntsev/y7-ui
 
+> **Y7's internal UI kit.** This repository is public only so that Y7's own applications can install it by git tag without credentials. It is not an open-source project: all rights reserved by Y7 Consulting Inc. (see `LICENSE`). All data in stories and mockups is fictional (`DEMO-…`).
+
+Install (pinned by tag): `npm install github:sergiivorotyntsev/y7-ui#v0.1.0`.
+
 Y7's shared UI library (UXSYS-1 Stage 1): design tokens, React Aria primitives styled with CSS modules, a Storybook catalogue, and the lint gates both apps run. One source for the website portal (`Y7-WEBSITE`, React 19, Puppeteer prerender) and the dispatch admin (`TRANSPORT`, React 18).
 
 The rules the library satisfies are in [docs/ui-standards.md](./docs/ui-standards.md) (C1-C5 controls, T1-T3 tokens, S1-S5 stability, A1-A4 answers, L1-L5 lists and statuses, F, X accessibility, P process). Rule IDs are cited in component comments and story descriptions.
