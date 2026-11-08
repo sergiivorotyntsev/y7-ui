@@ -54,7 +54,7 @@
   .list { display: grid; gap: var(--y7-space-lg); }
   .card { border: 1px solid var(--y7-color-border-strong); border-radius: var(--y7-radius-card); overflow: hidden; background: var(--y7-color-surface-panel); box-shadow: 0 1px 2px rgb(5 6 7 / 0.06), 0 6px 18px rgb(5 6 7 / 0.08); }
   .group { padding: var(--y7-space-sm) var(--y7-space-lg); background: var(--y7-color-surface-raised); border-bottom: 1px solid var(--y7-color-border-strong); font-size: var(--y7-font-size-sm); font-weight: var(--y7-font-weight-bold); display: flex; justify-content: space-between; color: var(--y7-color-text-primary); }
-  .row { position: relative; display: grid; grid-template-columns: 120px minmax(0, 1.25fr) minmax(0, 1.55fr) 190px 210px 32px; gap: var(--y7-space-lg); padding: var(--y7-space-md) var(--y7-space-lg) var(--y7-space-md) calc(var(--y7-space-lg) + 4px); border-top: 1px solid var(--y7-color-border-subtle); align-items: center; font-size: var(--y7-font-size-sm); color: var(--y7-color-text-primary); }
+  .row { position: relative; display: grid; grid-template-columns: 128px 236px minmax(0, 1fr) 196px 340px 32px; gap: var(--y7-space-lg); padding: var(--y7-space-md) var(--y7-space-lg) var(--y7-space-md) calc(var(--y7-space-lg) + 4px); border-top: 1px solid var(--y7-color-border-subtle); align-items: center; font-size: var(--y7-font-size-sm); color: var(--y7-color-text-primary); }
   .group + .row { border-top: 0; }
   .row::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--bar); }
   .row.done { --bar: var(--y7-color-status-done-fg); } .row.progress { --bar: var(--y7-color-status-progress-fg); }
@@ -74,10 +74,11 @@
   .file { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 var(--y7-space-md); border: 1px solid var(--y7-color-border-control); border-radius: var(--y7-radius-control); background: var(--y7-color-control-bg); font-size: var(--y7-font-size-sm); font-weight: var(--y7-font-weight-semibold); white-space: nowrap; }
   .file .ok { color: var(--y7-color-status-done-fg); font-weight: var(--y7-font-weight-bold); }
   .file.none { border-style: dashed; background: transparent; font-weight: var(--y7-font-weight-medium); }
-  .status { display: grid; gap: 4px; justify-items: end; text-align: right; }
+  /* the status column: badge, note (≤ 2 lines at 1440 in en and ru) and money, left-aligned, one steady rhythm */
+  .status { display: grid; gap: 4px; justify-items: start; text-align: left; align-content: center; min-height: 72px; }
   .badge { display: inline-block; padding: 4px 9px; border-radius: var(--y7-radius-pill); font-size: var(--y7-font-size-2xs); font-weight: var(--y7-font-weight-bold); letter-spacing: .08em; text-transform: uppercase; color: var(--y7-color-text-on-accent); background: var(--bar); }
-  .note { font-size: var(--y7-font-size-xs); color: var(--y7-color-text-primary); max-width: 30ch; }
-  .money { display: flex; gap: var(--y7-space-md); justify-content: flex-end; font-size: var(--y7-font-size-xs); }
+  .note { font-size: var(--y7-font-size-xs); line-height: 1.35; color: var(--y7-color-text-primary); max-width: 100%; }
+  .money { display: flex; gap: var(--y7-space-md); justify-content: flex-start; font-size: var(--y7-font-size-xs); }
   .money strong { font-family: var(--y7-font-family-mono); font-size: var(--y7-font-size-sm); }
   .tog { width: 32px; height: 32px; display: grid; place-items: center; border: 1px solid var(--y7-color-border-control); border-radius: var(--y7-radius-pill); }
   .pager { display: flex; justify-content: space-between; align-items: center; gap: var(--y7-space-md); margin-top: var(--y7-space-md); font-size: var(--y7-font-size-sm); color: var(--y7-color-text-secondary); }
