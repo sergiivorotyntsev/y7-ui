@@ -181,12 +181,13 @@ const CARS = [['2021', 'Toyota', 'Camry'], ['2019', 'Honda', 'Accord'], ['2022',
 const WH = [{ name: 'Sample Port Warehouse, NJ', colour: '#2f6f4e' }, { name: 'Demo Harbor Terminal, GA', colour: '#6d3fa0' }];
 // files: count = every customer-visible file; bol: 'photo' (a picture of the paper) | 'pdf' | null (fix 2 of review 2)
 const FILES = [{ count: 12, bol: 'photo' }, { count: 3, bol: 'pdf' }, { count: 0, bol: null }, { count: 7, bol: null }, { count: 9, bol: 'pdf' }, { count: 5, bol: 'photo' }];
-const NOTE_DAYS = { 0: '2026-11-06', 3: '2026-11-07' };
+// a delivery is never before the row's received day: the note's day is the day after receipt
+const NOTE_AFTER = new Set([0, 3]);
 function makeRow(i, status, day) { const [y, mk, md] = CARS[i % CARS.length]; const wh = WH[i % 2];
   return { id: `DEMO-${1000 + i}`, vin: `DEMO-VIN-${1000 + i}`, veh: `${y} ${mk} ${md}`,
     auction: i % 2 ? 'COPART' : 'IAA', from: 'Demoville, TX', wh, miles: 1180 + i * 13, carrier: status === 'LISTED' || status === 'RECEIVED' ? null : 'Example Carrier LLC',
     carrierPrice: 900 + i * 15, fee: 50, status, day, time: `${String(8 + (i % 9)).padStart(2, '0')}:${i % 2 ? '40' : '15'}`,
-    files: FILES[i % FILES.length], note: status === 'DELIVERED' && NOTE_DAYS[i] ? NOTE_DAYS[i] : null }; }
+    files: FILES[i % FILES.length], note: status === 'DELIVERED' && NOTE_AFTER.has(i) ? new Date(Date.parse(day + 'T12:00:00Z') + 864e5).toISOString().slice(0, 10) : null }; }
 const q = new URLSearchParams(location.search); const lang = q.get('lang') === 'ru' ? 'ru' : 'en'; const empty = !!q.get('empty');
 // filtered: Status = Delivered, Received Nov 6 – 7 → 9 rows on those two days. Empty: the first page of 771 active loads.
 const ROWS = empty
