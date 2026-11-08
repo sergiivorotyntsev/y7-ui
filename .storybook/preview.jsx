@@ -18,8 +18,9 @@ export default {
   },
   decorators: [
     (Story, ctx) => (
-      <Y7Provider theme={ctx.globals.theme} locale={ctx.globals.locale} className="y7-sb-canvas">
-        <Story />
+      // The Provider renders no element (ruling 7); the canvas is Storybook's own, so a story is judged on its theme's page
+      <Y7Provider theme={ctx.globals.theme} locale={ctx.globals.locale}>
+        <div className="y7-sb-canvas" lang={ctx.globals.locale}><Story /></div>
       </Y7Provider>
     ),
   ],
