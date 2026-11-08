@@ -98,12 +98,16 @@
     .search svg { top: 14px; }
     .filtersbtn { display: inline-flex; align-items: center; gap: var(--y7-space-xs); height: var(--y7-size-control-touch); padding: 0 var(--y7-space-md); border: 1px solid var(--y7-color-border-control); border-radius: var(--y7-radius-control); background: var(--y7-color-control-bg); font-weight: var(--y7-font-weight-semibold); font-size: var(--y7-font-size-md); white-space: nowrap; }
     .controls { display: none; }
-    .row { grid-template-columns: 1fr auto; gap: var(--y7-space-sm); }
-    .row > .route, .row > .rec { grid-column: 1 / -1; }
-    .row > .files { grid-column: 1 / -1; grid-template-columns: 1fr 1fr; }
-    /* fix 5: on phones the status and its note read left to right under the files, full row width */
-    .row > .status { grid-column: 1 / -1; justify-items: start; text-align: left; }
+    /* phone row: received + toggle on the first line; then vehicle and IDs, route, files, status, money — full width */
+    .row { grid-template-columns: minmax(0, 1fr) 32px; gap: var(--y7-space-sm) var(--y7-space-md); padding: var(--y7-space-md) var(--y7-space-md) var(--y7-space-md) calc(var(--y7-space-md) + 4px); }
+    .row > .rec { grid-column: 1; grid-row: 1; display: flex; gap: 6px; align-items: baseline; }
+    .row > .tog { grid-column: 2; grid-row: 1; }
+    .row > .who, .row > .route, .row > .files, .row > .status { grid-column: 1 / -1; }
+    .file { width: 100%; justify-content: center; }
+    /* fix 5: on phones the status and its note read left to right, full row width */
+    .row > .status { justify-items: start; text-align: left; }
     .row > .status .note { max-width: none; }
+    .money { justify-content: flex-start; }
     /* fix 4: "Show 25" on its own row; Previous · Page · Next on one row that never overlaps */
     .pager { flex-direction: column; align-items: stretch; gap: var(--y7-space-sm); }
     .pager .nav2 { justify-content: space-between; }
