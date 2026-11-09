@@ -84,18 +84,47 @@
   --y7-color-status-done-fg: #0f6e56;
   --y7-color-status-done-bg: #e1f5ee;
   --y7-color-status-done-on-fill: #fff7ed; /** Text on a FILLED status chip (the status fg as the background), measured ≥ 4.5:1 (tokens/test/contrast.test.mjs). */
+  --y7-color-status-done-fill: #0f6e56; /** The badge (filled) and the row bar colour; one hue per status (tokens/test/statusHues.test.mjs). */
   --y7-color-status-progress-fg: #14648c;
   --y7-color-status-progress-bg: #e3eef5;
   --y7-color-status-progress-on-fill: #fff7ed; /** Text on a FILLED status chip (the status fg as the background), measured ≥ 4.5:1 (tokens/test/contrast.test.mjs). */
+  --y7-color-status-progress-fill: #14648c; /** The badge (filled) and the row bar colour; one hue per status (tokens/test/statusHues.test.mjs). */
   --y7-color-status-needs-you-fg: #9a3412;
   --y7-color-status-needs-you-bg: #fbeedd;
   --y7-color-status-needs-you-on-fill: #fff7ed; /** Text on a FILLED status chip (the status fg as the background), measured ≥ 4.5:1 (tokens/test/contrast.test.mjs). */
+  --y7-color-status-needs-you-fill: #b4510b; /** The badge (filled) and the row bar colour; one hue per status (tokens/test/statusHues.test.mjs). */
   --y7-color-status-blocked-fg: #a90918;
   --y7-color-status-blocked-bg: #fbefec;
   --y7-color-status-blocked-on-fill: #fff7ed; /** Text on a FILLED status chip (the status fg as the background), measured ≥ 4.5:1 (tokens/test/contrast.test.mjs). */
+  --y7-color-status-blocked-fill: #a90918; /** The badge (filled) and the row bar colour; one hue per status (tokens/test/statusHues.test.mjs). */
   --y7-color-status-neutral-fg: #5c5851;
   --y7-color-status-neutral-bg: #eee8dd;
   --y7-color-status-neutral-on-fill: #fff7ed; /** Text on a FILLED status chip (the status fg as the background), measured ≥ 4.5:1 (tokens/test/contrast.test.mjs). */
+  --y7-color-status-neutral-fill: #5c5851; /** The badge (filled) and the row bar colour; one hue per status (tokens/test/statusHues.test.mjs). */
+  --y7-color-status-received-fg: #374151;
+  --y7-color-status-received-bg: #eceef1;
+  --y7-color-status-received-on-fill: #fff7ed;
+  --y7-color-status-received-fill: #4b5563; /** The badge (filled) and the row bar colour; one hue per status (tokens/test/statusHues.test.mjs). */
+  --y7-color-status-listed-fg: #0b5a8c;
+  --y7-color-status-listed-bg: #e5f1fb;
+  --y7-color-status-listed-on-fill: #050607;
+  --y7-color-status-listed-fill: #86bff2; /** The badge (filled) and the row bar colour; one hue per status (tokens/test/statusHues.test.mjs). */
+  --y7-color-status-assigned-fg: #1e3a8a;
+  --y7-color-status-assigned-bg: #e7ecfa;
+  --y7-color-status-assigned-on-fill: #fff7ed;
+  --y7-color-status-assigned-fill: #1e40af; /** The badge (filled) and the row bar colour; one hue per status (tokens/test/statusHues.test.mjs). */
+  --y7-color-status-transit-fg: #5b21b6;
+  --y7-color-status-transit-bg: #efe8fb;
+  --y7-color-status-transit-on-fill: #fff7ed;
+  --y7-color-status-transit-fill: #6d28d9; /** The badge (filled) and the row bar colour; one hue per status (tokens/test/statusHues.test.mjs). */
+  --y7-color-status-checking-fg: #0b5c60;
+  --y7-color-status-checking-bg: #def1f1;
+  --y7-color-status-checking-on-fill: #fff7ed;
+  --y7-color-status-checking-fill: #097a7f; /** The badge (filled) and the row bar colour; one hue per status (tokens/test/statusHues.test.mjs). */
+  --y7-color-status-cancelled-fg: #4a4640;
+  --y7-color-status-cancelled-bg: #f4f0e8;
+  --y7-color-status-cancelled-on-fill: #fff7ed;
+  --y7-color-status-cancelled-fill: #5c5851; /** The row bar colour for a cancelled load (the chip itself is an outline). */
   --y7-color-skeleton-base: rgb(5 6 7 / 0.08);
   --y7-color-skeleton-shine: rgb(5 6 7 / 0.04);
   --y7-color-scrim: rgb(5 6 7 / 0.55); /** Modal backdrop */
@@ -111,6 +140,12 @@
   --y7-color-status-needs-you-border: var(--y7-color-status-needs-you-fg);
   --y7-color-status-blocked-border: var(--y7-color-status-blocked-fg);
   --y7-color-status-neutral-border: var(--y7-color-status-neutral-fg);
+  --y7-color-status-received-border: var(--y7-color-status-received-fg);
+  --y7-color-status-listed-border: var(--y7-color-status-listed-fg);
+  --y7-color-status-assigned-border: var(--y7-color-status-assigned-fg);
+  --y7-color-status-transit-border: var(--y7-color-status-transit-fg);
+  --y7-color-status-checking-border: var(--y7-color-status-checking-fg);
+  --y7-color-status-cancelled-border: var(--y7-color-status-cancelled-fg);
   --y7-color-feedback-error-fg: var(--y7-color-status-blocked-fg);
   --y7-color-feedback-error-bg: var(--y7-color-status-blocked-bg);
   --y7-color-feedback-error-border: var(--y7-color-status-blocked-fg);
