@@ -24,3 +24,15 @@ test('the phone sheet caps in dvh too (no percentage)', () => {
   assert.match(phone, /\.sheet\s*\{[^}]*max-block-size:\s*calc\(100dvh - var\(--y7-space-xl\)\)/);
   assert.doesNotMatch(phone, /max-block-size:\s*90%/);
 });
+
+test('v0.1.4 wide size: min(1120px, 94vw), the same dvh cap; a full-height sheet at 480px and below', () => {
+  assert.match(rule('.wide'), /inline-size:\s*min\(1120px, 94vw\)/);
+  const phone = css.slice(css.indexOf('@media (max-width: 480px)'));
+  assert.match(phone, /\.wide\s*\{[^}]*inline-size:\s*100%[^}]*block-size:\s*100dvh[^}]*max-block-size:\s*100dvh/);
+});
+
+test('v0.1.4 the header is sticky inside the dialog, so it stays while the body scrolls', () => {
+  assert.match(rule('.header'), /position:\s*sticky/);
+  assert.match(rule('.header'), /inset-block-start:\s*0/);
+  assert.match(rule('.headerActions'), /display:\s*flex/);
+});
