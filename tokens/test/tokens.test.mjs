@@ -23,7 +23,7 @@ const SEMANTIC_REQUIRED = [
   'size-control-sm', 'size-control-md', 'size-control-lg', 'size-control-touch', 'size-row',
   'font-family-ui', 'font-family-mono', 'font-size-2xs', 'font-size-xs', 'font-size-sm', 'font-size-md', 'font-size-lg', 'font-size-xl',
   'font-weight-regular', 'font-weight-medium', 'font-weight-semibold', 'font-weight-bold',
-  'focus-width', 'focus-offset', 'z-dropdown', 'z-drawer', 'z-overlay', 'z-toast',
+  'focus-width', 'focus-offset', 'z-content', 'z-dropdown', 'z-sticky-header', 'z-drawer', 'z-overlay', 'z-toast',
 ];
 const STATUSES = ['done', 'progress', 'needs-you', 'blocked', 'neutral'];
 const FEEDBACK = ['error', 'success', 'info', 'needs-you'];

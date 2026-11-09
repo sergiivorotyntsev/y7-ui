@@ -1,6 +1,6 @@
 {
   "name": "@sergiivorotyntsev/y7-ui",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Y7 shared UI library: DTCG tokens (site + admin themes), React Aria primitives styled with CSS modules, and the ESLint/Stylelint gates both apps run.",
   "type": "module",
   "license": "UNLICENSED",
