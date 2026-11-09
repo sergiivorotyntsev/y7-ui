@@ -41,10 +41,12 @@
   --y7-focus-offset: 2px;
   --y7-border-width-hairline: 1px;
   --y7-border-width-strong: 2px; /** Error state border on a field (A2/X2: error is a border on the field, focus is a ring outside it). */
+  --y7-z-content: 1;
   --y7-z-dropdown: 20;
   --y7-z-bottom-nav: 30;
-  --y7-z-drawer: 40;
-  --y7-z-overlay: 50;
+  --y7-z-sticky-header: 100; /** The host's sticky site header (the website's Header.module.css uses 100). */
+  --y7-z-drawer: 1050;
+  --y7-z-overlay: 1100;
   --y7-z-toast: 9999;
   --y7-opacity-disabled: 0.5;
   --y7-opacity-busy-dim: 0.6; /** Previous content dimmed while reloading (S2). */
