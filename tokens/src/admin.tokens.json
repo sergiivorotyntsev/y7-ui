@@ -420,6 +420,20 @@
             "hex": "#0b0c0e"
           },
           "$description": "Text on a FILLED status chip (the status fg as the background), measured ≥ 4.5:1 (tokens/test/contrast.test.mjs)."
+        },
+        "fill": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.2039,
+              0.7804,
+              0.349
+            ],
+            "alpha": 1,
+            "hex": "#34c759"
+          },
+          "$description": "The badge (filled) and the row bar colour; one hue per status (tokens/test/statusHues.test.mjs)."
         }
       },
       "progress": {
@@ -466,6 +480,20 @@
             "hex": "#0b0c0e"
           },
           "$description": "Text on a FILLED status chip (the status fg as the background), measured ≥ 4.5:1 (tokens/test/contrast.test.mjs)."
+        },
+        "fill": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3686,
+              0.6314,
+              1.0
+            ],
+            "alpha": 1,
+            "hex": "#5ea1ff"
+          },
+          "$description": "The badge (filled) and the row bar colour; one hue per status (tokens/test/statusHues.test.mjs)."
         }
       },
       "needs-you": {
@@ -512,6 +540,20 @@
             "hex": "#0b0c0e"
           },
           "$description": "Text on a FILLED status chip (the status fg as the background), measured ≥ 4.5:1 (tokens/test/contrast.test.mjs)."
+        },
+        "fill": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.9608,
+              0.6471,
+              0.1412
+            ],
+            "alpha": 1,
+            "hex": "#f5a524"
+          },
+          "$description": "The badge (filled) and the row bar colour; one hue per status (tokens/test/statusHues.test.mjs)."
         }
       },
       "blocked": {
@@ -558,6 +600,20 @@
             "hex": "#0b0c0e"
           },
           "$description": "Text on a FILLED status chip (the status fg as the background), measured ≥ 4.5:1 (tokens/test/contrast.test.mjs)."
+        },
+        "fill": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1.0,
+              0.4824,
+              0.4471
+            ],
+            "alpha": 1,
+            "hex": "#ff7b72"
+          },
+          "$description": "The badge (filled) and the row bar colour; one hue per status (tokens/test/statusHues.test.mjs)."
         }
       },
       "neutral": {
@@ -604,6 +660,315 @@
             "hex": "#0b0c0e"
           },
           "$description": "Text on a FILLED status chip (the status fg as the background), measured ≥ 4.5:1 (tokens/test/contrast.test.mjs)."
+        },
+        "fill": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5843,
+              0.6078,
+              0.6392
+            ],
+            "alpha": 1,
+            "hex": "#959ba3"
+          },
+          "$description": "The badge (filled) and the row bar colour; one hue per status (tokens/test/statusHues.test.mjs)."
+        }
+      },
+      "received": {
+        "$description": "Neutral slate = we have the order (Received). v0.1.2 pipeline tone.",
+        "fg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7529,
+              0.7804,
+              0.8196
+            ],
+            "alpha": 1,
+            "hex": "#c0c7d1"
+          }
+        },
+        "bg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1451,
+              0.1608,
+              0.1804
+            ],
+            "alpha": 1,
+            "hex": "#25292e"
+          }
+        },
+        "border": {
+          "$value": "{color.status.received.fg}"
+        },
+        "on-fill": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0431,
+              0.0471,
+              0.0549
+            ],
+            "alpha": 1,
+            "hex": "#0b0c0e"
+          }
+        },
+        "fill": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5451,
+              0.5843,
+              0.6471
+            ],
+            "alpha": 1,
+            "hex": "#8b95a5"
+          },
+          "$description": "The badge (filled) and the row bar colour; one hue per status (tokens/test/statusHues.test.mjs)."
+        }
+      },
+      "listed": {
+        "$description": "Light sky blue = looking for a carrier (Listed). v0.1.2 pipeline tone.",
+        "fg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.549,
+              0.7843,
+              1.0
+            ],
+            "alpha": 1,
+            "hex": "#8cc8ff"
+          }
+        },
+        "bg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1098,
+              0.1686,
+              0.2275
+            ],
+            "alpha": 1,
+            "hex": "#1c2b3a"
+          }
+        },
+        "border": {
+          "$value": "{color.status.listed.fg}"
+        },
+        "on-fill": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0431,
+              0.0471,
+              0.0549
+            ],
+            "alpha": 1,
+            "hex": "#0b0c0e"
+          }
+        },
+        "fill": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.549,
+              0.7843,
+              1.0
+            ],
+            "alpha": 1,
+            "hex": "#8cc8ff"
+          },
+          "$description": "The badge (filled) and the row bar colour; one hue per status (tokens/test/statusHues.test.mjs)."
+        }
+      },
+      "assigned": {
+        "$description": "Deep blue = a carrier has it (Carrier assigned). v0.1.2 pipeline tone.",
+        "fg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6157,
+              0.698,
+              1.0
+            ],
+            "alpha": 1,
+            "hex": "#9db2ff"
+          }
+        },
+        "bg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1333,
+              0.1647,
+              0.251
+            ],
+            "alpha": 1,
+            "hex": "#222a40"
+          }
+        },
+        "border": {
+          "$value": "{color.status.assigned.fg}"
+        },
+        "on-fill": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0431,
+              0.0471,
+              0.0549
+            ],
+            "alpha": 1,
+            "hex": "#0b0c0e"
+          }
+        },
+        "fill": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.4196,
+              0.549,
+              1.0
+            ],
+            "alpha": 1,
+            "hex": "#6b8cff"
+          },
+          "$description": "The badge (filled) and the row bar colour; one hue per status (tokens/test/statusHues.test.mjs)."
+        }
+      },
+      "transit": {
+        "$description": "Violet = on the truck (Picked up / in transit). v0.1.2 pipeline tone.",
+        "fg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7686,
+              0.7098,
+              0.9922
+            ],
+            "alpha": 1,
+            "hex": "#c4b5fd"
+          }
+        },
+        "bg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1647,
+              0.1373,
+              0.2588
+            ],
+            "alpha": 1,
+            "hex": "#2a2342"
+          }
+        },
+        "border": {
+          "$value": "{color.status.transit.fg}"
+        },
+        "on-fill": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0431,
+              0.0471,
+              0.0549
+            ],
+            "alpha": 1,
+            "hex": "#0b0c0e"
+          }
+        },
+        "fill": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.6549,
+              0.5451,
+              0.9804
+            ],
+            "alpha": 1,
+            "hex": "#a78bfa"
+          },
+          "$description": "The badge (filled) and the row bar colour; one hue per status (tokens/test/statusHues.test.mjs)."
+        }
+      },
+      "checking": {
+        "$description": "Teal = delivered per Central Dispatch, Y7 is checking the documents. v0.1.2 pipeline tone.",
+        "fg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.3686,
+              0.9176,
+              0.8314
+            ],
+            "alpha": 1,
+            "hex": "#5eead4"
+          }
+        },
+        "bg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0941,
+              0.2,
+              0.1961
+            ],
+            "alpha": 1,
+            "hex": "#183332"
+          }
+        },
+        "border": {
+          "$value": "{color.status.checking.fg}"
+        },
+        "on-fill": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0431,
+              0.0471,
+              0.0549
+            ],
+            "alpha": 1,
+            "hex": "#0b0c0e"
+          }
+        },
+        "fill": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.1333,
+              0.7804,
+              0.7529
+            ],
+            "alpha": 1,
+            "hex": "#22c7c0"
+          },
+          "$description": "The badge (filled) and the row bar colour; one hue per status (tokens/test/statusHues.test.mjs)."
         }
       }
     },

@@ -6,7 +6,8 @@ import { assertStatusProps } from './statusVocabulary.js';
 import styles from './Chip.module.css';
 
 /**
- * StatusChip (L1): tone done | progress | needs-you | blocked | neutral, drawn from the status tokens. variant 'tint'
+ * StatusChip (L1): tone received | listed | assigned | transit | checking | done | needs-you | blocked (v0.1.2 pipeline, one hue
+ * each; progress | neutral kept), drawn from the status tokens. variant 'tint'
  * (default) or 'filled' (v0.1.1: the status colour as the background, its on-fill token as the text — the portal list).
  * The words are mandatory (colour is never the only signal); `needs-you` also requires `action`, the words of what to do.
  */
