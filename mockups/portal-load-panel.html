@@ -78,8 +78,11 @@
     .panel { padding: var(--y7-space-md) var(--y7-space-md) var(--y7-space-md) calc(var(--y7-space-md) + 4px); }
     /* compact stepper: dots, the current step named */
     .step .name, .step .when { display: none; }
-    .step.current .name, .step.current .when { display: block; position: absolute; top: 20px; white-space: nowrap; }
-    .stepper { padding-bottom: 36px; }
+    /* the current step: its name under the dot, its date under the name (they overlapped at the same top) */
+    .step.current .name, .step.current .when { display: block; position: absolute; white-space: nowrap; }
+    .step.current .name { top: 20px; }
+    .step.current .when { top: 38px; }
+    .stepper { padding-bottom: 54px; }
     .cards { grid-template-columns: 1fr; }
     .strip { grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 96px; overflow-x: auto; scroll-snap-type: x mandatory; }
   }
