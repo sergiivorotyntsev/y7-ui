@@ -58,3 +58,14 @@ test('control radius: site 12 px (DESIGN.md), admin 10 px', () => {
 });
 
 test.after(() => { console.log('MEASURED', JSON.stringify(measured)); });
+
+// v0.1.1 (Stage 2 follow-up): a FILLED status chip (the portal list's badge) — its text on the status colour itself
+for (const [name, mod] of Object.entries(THEMES)) {
+  test(`${name}: text on a filled status chip ≥ 4.5:1 (on-fill on the status fg)`, () => {
+    for (const s of STATUSES) {
+      const r = ratio(mod.tokens[`color-status-${s}-on-fill`], mod.tokens[`color-status-${s}-fg`]);
+      measured[`${name} filled ${s}`] = r.toFixed(2);
+      assert.ok(r >= 4.5, `${name}: filled ${s} = ${r.toFixed(2)}:1`);
+    }
+  });
+}
