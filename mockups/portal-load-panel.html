@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<!--
+  UXSYS-1 — MOCKUP (design-first, P1): the portal Loads list's EXPANDED ROW PANEL, compact. For Claude, then Sergii.
+  Sergii's review of the live panel (Nov 8): "too much useless and duplicated information, more than half the page; make it
+  beautiful and compact; remove the file names under photos". Target: ≤ ~45% of a 900 px viewport at 1440 with the photos
+  in one row. Built from y7-ui site tokens (tokens/dist/site.css, v0.1.2 pipeline colours). Fictional data only.
+  ?state=listed|assigned|pickedup|delivered (default delivered) · ?lang=ru
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mockup · Portal load panel (compact)</title>
+<link rel="stylesheet" href="../tokens/dist/site.css">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; background: var(--y7-color-surface-page); color: var(--y7-color-text-primary); font-family: var(--y7-font-family-ui); font-variant-numeric: tabular-nums; }
+  .shell { max-width: 1440px; margin: 0 auto; padding: var(--y7-space-xl); }
+  .card { border: 1px solid var(--y7-color-border-strong); border-radius: var(--y7-radius-card); overflow: hidden; background: var(--y7-color-surface-panel); box-shadow: 0 1px 2px rgb(5 6 7 / 0.06), 0 6px 18px rgb(5 6 7 / 0.08); }
+  .group { padding: var(--y7-space-sm) var(--y7-space-lg); background: var(--y7-color-surface-raised); border-bottom: 1px solid var(--y7-color-border-strong); font-size: var(--y7-font-size-sm); font-weight: var(--y7-font-weight-bold); display: flex; justify-content: space-between; }
+  /* the row (unchanged from the approved list) */
+  .row { position: relative; display: grid; grid-template-columns: 128px 236px minmax(0, 1fr) 196px 340px 32px; gap: var(--y7-space-lg); padding: var(--y7-space-md) var(--y7-space-lg) var(--y7-space-md) calc(var(--y7-space-lg) + 4px); align-items: center; font-size: var(--y7-font-size-sm); }
+  .row::before, .panel::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--bar); }
+  .lbl { font-size: var(--y7-font-size-2xs); font-weight: var(--y7-font-weight-semibold); letter-spacing: .06em; text-transform: uppercase; color: var(--y7-color-text-secondary); }
+  .veh { font-size: var(--y7-font-size-lg); font-weight: var(--y7-font-weight-bold); }
+  .mono { font-family: var(--y7-font-family-mono); font-size: var(--y7-font-size-xs); }
+  .auc { display: inline-block; padding: 1px 6px; margin-right: 6px; border-radius: 4px; background: var(--y7-color-surface-inverse); color: var(--y7-color-text-on-inverse); font-size: var(--y7-font-size-2xs); font-weight: var(--y7-font-weight-bold); }
+  .wh { display: inline-block; width: 10px; height: 10px; border-radius: 2px; background: #2f6f4e; margin: 0 4px 0 2px; }
+  .file { display: inline-flex; align-items: center; gap: 6px; height: 36px; padding: 0 var(--y7-space-md); border: 1px solid var(--y7-color-border-control); border-radius: var(--y7-radius-control); background: var(--y7-color-control-bg); font-weight: var(--y7-font-weight-semibold); white-space: nowrap; }
+  .ok { color: var(--y7-color-status-done-fg); }
+  .badge { display: inline-block; padding: 4px 9px; border-radius: var(--y7-radius-pill); font-size: var(--y7-font-size-2xs); font-weight: var(--y7-font-weight-bold); letter-spacing: .08em; text-transform: uppercase; background: var(--bar); color: var(--on); }
+  .status { display: grid; gap: 4px; justify-items: start; }
+  .note { font-size: var(--y7-font-size-xs); }
+  .tog { width: 32px; height: 32px; display: grid; place-items: center; border: 1px solid var(--y7-color-border-control); border-radius: var(--y7-radius-pill); background: var(--y7-color-control-bg); }
+
+  /* THE PANEL: compact — a stepper, three cards, one document line, one photo strip, a footer link */
+  .panel { position: relative; padding: var(--y7-space-md) var(--y7-space-lg) var(--y7-space-md) calc(var(--y7-space-lg) + 4px); border-top: 1px dashed var(--y7-color-border-subtle); display: grid; gap: var(--y7-space-md); }
+  .stepper { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0; list-style: none; margin: 0; padding: 0; }
+  .step { position: relative; display: grid; gap: 2px; justify-items: center; text-align: center; font-size: var(--y7-font-size-xs); }
+  .step::before { content: ""; position: absolute; top: 7px; left: -50%; width: 100%; height: 2px; background: var(--y7-color-border-strong); z-index: 0; }
+  .step:first-child::before { display: none; }
+  .step.reached::before { background: var(--bar); }
+  .dot { position: relative; z-index: 1; width: 16px; height: 16px; border-radius: 50%; border: 2px solid var(--y7-color-border-strong); background: var(--y7-color-surface-panel); }
+  .step.reached .dot { background: var(--bar); border-color: var(--bar); }
+  .step.current .dot { box-shadow: 0 0 0 4px color-mix(in srgb, var(--bar) 25%, transparent); }
+  .step .name { font-weight: var(--y7-font-weight-semibold); }
+  .step .when { color: var(--y7-color-text-primary); }
+  .step .when.expected { color: var(--y7-color-text-secondary); font-style: italic; }
+  .cards { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--y7-space-md); }
+  .mini { border: 1px solid var(--y7-color-border-subtle); border-radius: var(--y7-radius-control); background: var(--y7-color-surface-page); padding: var(--y7-space-sm) var(--y7-space-md); display: grid; gap: 4px; font-size: var(--y7-font-size-sm); align-content: start; }
+  .mini h4 { margin: 0 0 2px; display: flex; justify-content: space-between; align-items: center; }
+  .kv { display: flex; justify-content: space-between; gap: var(--y7-space-sm); }
+  .kv span:first-child { color: var(--y7-color-text-secondary); }
+  .kv strong { font-family: var(--y7-font-family-mono); }
+  .src { font-size: var(--y7-font-size-2xs); color: var(--y7-color-text-secondary); }
+  .chips { display: flex; flex-wrap: wrap; gap: 6px; }
+  .chip { display: inline-flex; gap: 4px; align-items: center; height: 22px; padding: 0 8px; border-radius: var(--y7-radius-pill); font-size: var(--y7-font-size-2xs); font-weight: var(--y7-font-weight-semibold); border: 1px solid var(--y7-color-border-subtle); }
+  .chip.yes { color: var(--y7-color-status-done-fg); background: var(--y7-color-status-done-bg); border-color: transparent; }
+  .chip.no { color: var(--y7-color-text-secondary); }
+  .help { width: 18px; height: 18px; display: inline-grid; place-items: center; border-radius: 50%; border: 1px solid var(--y7-color-border-control); font-size: 11px; color: var(--y7-color-text-secondary); cursor: help; }
+  .link { color: var(--y7-color-text-primary); font-weight: var(--y7-font-weight-semibold); text-decoration: underline; text-underline-offset: 3px; font-size: var(--y7-font-size-sm); }
+  .docline { display: flex; align-items: center; gap: var(--y7-space-md); font-size: var(--y7-font-size-sm); }
+  .photos h4 { margin: 0 0 var(--y7-space-sm); display: flex; align-items: center; gap: var(--y7-space-md); font-size: var(--y7-font-size-md); }
+  .btn-s { height: 28px; padding: 0 var(--y7-space-sm); display: inline-flex; align-items: center; border: 1px solid var(--y7-color-border-control); border-radius: var(--y7-radius-control); background: var(--y7-color-control-bg); font-size: var(--y7-font-size-xs); font-weight: var(--y7-font-weight-semibold); }
+  .strip { display: grid; grid-template-columns: repeat(10, 96px); gap: var(--y7-space-sm); overflow: hidden; }
+  .thumb { position: relative; width: 96px; height: 72px; border-radius: var(--y7-radius-control); border: 1px solid var(--y7-color-border-subtle); background: var(--g); }
+  .thumb .tag { position: absolute; left: 4px; top: 4px; padding: 0 5px; border-radius: 4px; background: var(--y7-color-surface-inverse); color: var(--y7-color-text-on-inverse); font-size: 10px; font-weight: var(--y7-font-weight-bold); }
+  .thumb.more { display: grid; place-items: center; background: var(--y7-color-surface-raised); font-weight: var(--y7-font-weight-bold); font-size: var(--y7-font-size-sm); }
+  .foot { font-size: var(--y7-font-size-xs); color: var(--y7-color-text-secondary); }
+  .foot a { color: inherit; }
+  .annot { margin-top: var(--y7-space-xl); padding: var(--y7-space-md) var(--y7-space-lg); border: 1px dashed var(--y7-color-border-strong); border-radius: var(--y7-radius-control); font-size: var(--y7-font-size-xs); color: var(--y7-color-text-secondary); max-width: 900px; }
+  @media (max-width: 680px) {
+    .shell { padding: var(--y7-space-md); }
+    .row { grid-template-columns: minmax(0, 1fr) 32px; gap: var(--y7-space-sm); padding: var(--y7-space-md) var(--y7-space-md) var(--y7-space-md) calc(var(--y7-space-md) + 4px); }
+    .row > .rec { grid-column: 1; grid-row: 1; display: flex; gap: 6px; } .row > .tog { grid-column: 2; grid-row: 1; }
+    .row > .who, .row > .route, .row > .files, .row > .status { grid-column: 1 / -1; }
+    .file { width: 100%; height: 44px; justify-content: center; }
+    .panel { padding: var(--y7-space-md) var(--y7-space-md) var(--y7-space-md) calc(var(--y7-space-md) + 4px); }
+    /* compact stepper: dots, the current step named */
+    .step .name, .step .when { display: none; }
+    .step.current .name, .step.current .when { display: block; position: absolute; top: 20px; white-space: nowrap; }
+    .stepper { padding-bottom: 36px; }
+    .cards { grid-template-columns: 1fr; }
+    .strip { grid-auto-flow: column; grid-template-columns: none; grid-auto-columns: 96px; overflow-x: auto; scroll-snap-type: x mandatory; }
+  }
+</style>
+</head>
+<body>
+<main class="shell">
+  <section class="card">
+    <div class="group"><span data-t="day"></span><span data-t="count"></span></div>
+    <div class="row" data-row>
+      <div class="rec"><div class="lbl" data-t="received"></div><div data-t="recTime"></div></div>
+      <div class="who"><div class="veh">2021 Toyota Camry</div><div class="mono">VIN DEMO-VIN-1000 · Load ID DEMO-1000</div></div>
+      <div class="route"><span class="auc">IAA</span>Demoville, TX → <span class="wh"></span>Sample Port Warehouse, NJ<div data-t="routeSub"></div></div>
+      <div class="files"><span class="file" data-t="files"></span></div>
+      <div class="status"><span class="badge" data-t="statusWord"></span><span class="note" data-t="statusNote"></span></div>
+      <span class="tog" aria-hidden="true">▴</span>
+    </div>
+    <div class="panel" data-panel>
+      <ol class="stepper" data-stepper></ol>
+      <div class="cards">
+        <div class="mini"><h4 data-t="carrierH"></h4><div data-t="carrierBody"></div></div>
+        <div class="mini"><h4 data-t="scheduleH"></h4><div data-t="scheduleBody"></div></div>
+        <div class="mini"><h4><span data-t="moneyH"></span><span class="help" data-tip title="">?</span></h4><div data-t="moneyBody"></div></div>
+      </div>
+      <div class="docline"><span class="lbl" data-t="docsL"></span><a class="link" href="#" data-t="orderDoc"></a></div>
+      <div class="photos" data-photos></div>
+      <div class="foot"><a href="#" data-t="contact"></a></div>
+    </div>
+  </section>
+  <aside class="annot" data-t="annot"></aside>
+</main>
+<script>
+const q = new URLSearchParams(location.search); const lang = q.get('lang') === 'ru' ? 'ru' : 'en'; const state = ['listed', 'assigned', 'pickedup', 'delivered'].includes(q.get('state')) ? q.get('state') : 'delivered';
+document.documentElement.lang = lang;
+const STEP = { listed: 1, assigned: 2, pickedup: 3, delivered: 4 }[state];
+const TONE = { listed: ['#86bff2', '#050607'], assigned: ['#1e40af', '#fff7ed'], pickedup: ['#6d28d9', '#fff7ed'], delivered: ['#097a7f', '#fff7ed'] }[state]; // delivered here = "checking" (per CD, Y7 checking)
+document.documentElement.style.setProperty('--bar', TONE[0]); document.documentElement.style.setProperty('--on', TONE[1]);
+const D = (d, l) => new Intl.DateTimeFormat(l === 'ru' ? 'ru-RU' : 'en-US', { month: 'short', day: 'numeric', timeZone: 'UTC' }).format(new Date(d + 'T12:00:00Z'));
+const W = {
+  en: { day: 'Thursday, October 23, 2026', count: 'Loads: 1', received: 'Received', recTime: 'Oct 22, 08:15 ET', routeSub: '1,180 mi · Carrier: Example Carrier LLC',
+    files: { listed: 'No BOL or photos yet', assigned: 'No BOL or photos yet', pickedup: 'BOL & photos · 3 · <span class="ok">BOL ✓</span>', delivered: 'BOL & photos · 14 · <span class="ok">BOL ✓</span>' }[state],
+    statusWord: { listed: 'Listed', assigned: 'Carrier assigned', pickedup: 'Picked up', delivered: 'Delivered' }[state],
+    statusNote: { listed: '', assigned: '', pickedup: 'Picked up Oct 23 · per Central Dispatch', delivered: 'Delivered Oct 26 · per Central Dispatch · Y7 is checking the documents' }[state],
+    steps: ['Received', 'Listed', 'Carrier assigned', 'Picked up', 'Delivered'], expected: 'expected',
+    carrierH: 'Carrier', scheduleH: 'Schedule', moneyH: 'Money', docsL: 'Documents', orderDoc: 'Order document ↗', contact: 'Contact Y7 dispatch for changes →',
+    awaiting: 'Looking for a carrier', mc: 'MC', assignedOn: 'Assigned', pickup: 'Pickup', delivery: 'Delivery', perCd: 'per Central Dispatch', planned: 'planned',
+    carrierPrice: 'Carrier', fee: 'Y7 fee', feeState: 'ready to invoice · Oct period', paid: 'Carrier paid', invoiced: 'Invoiced', notYet: 'not yet', billing: 'Billing →',
+    tip: 'The carrier price is paid to the carrier; the Y7 fee is Y7’s only charge. They are never added together.',
+    photosH: n => `BOL & photos · ${n}`, downloadAll: 'Download all', more: n => `+${n} more`, bolTag: 'BOL',
+    annot: 'MOCKUP for approval: the expanded panel, compact. Removed: Order received / Received via (on the row), "Carrier assigned since" (the stepper says it), the carrier lines repeated three times, the transport total repeating one number, the Y7 fee repeated, the explanatory sentences (one "?" tooltip), the giant photos heading, file names under photos, the 4-line vertical timeline, the full-width contact line. Fictional data.' },
+  ru: { day: 'четверг, 23 октября 2026 г.', count: 'Лоадов: 1', received: 'Получен', recTime: '22 окт., 08:15 ET', routeSub: '1 180 миль · Перевозчик: Example Carrier LLC',
+    files: { listed: 'BOL и фото ещё нет', assigned: 'BOL и фото ещё нет', pickedup: 'BOL и фото · 3 · <span class="ok">BOL ✓</span>', delivered: 'BOL и фото · 14 · <span class="ok">BOL ✓</span>' }[state],
+    statusWord: { listed: 'Выставлен', assigned: 'Перевозчик назначен', pickedup: 'Забран', delivered: 'Доставлен' }[state],
+    statusNote: { listed: '', assigned: '', pickedup: 'Забран 23 окт. · по данным Central Dispatch', delivered: 'Доставлен 26 окт. · по данным Central Dispatch · Y7 проверяет документы' }[state],
+    steps: ['Получен', 'Выставлен', 'Перевозчик назначен', 'Забран', 'Доставлен'], expected: 'ожидается',
+    carrierH: 'Перевозчик', scheduleH: 'График', moneyH: 'Деньги', docsL: 'Документы', orderDoc: 'Документ заказа ↗', contact: 'Изменения: напишите диспетчеру Y7 →',
+    awaiting: 'Ищем перевозчика', mc: 'MC', assignedOn: 'Назначен', pickup: 'Погрузка', delivery: 'Доставка', perCd: 'по данным Central Dispatch', planned: 'план',
+    carrierPrice: 'Перевозчик', fee: 'Сбор Y7', feeState: 'к выставлению · октябрь', paid: 'Перевозчику оплачено', invoiced: 'Счёт выставлен', notYet: 'ещё нет', billing: 'Счета →',
+    tip: 'Цену перевозчика получает перевозчик; сбор Y7: единственный платёж в пользу Y7. Они никогда не складываются.',
+    photosH: n => `BOL и фото · ${n}`, downloadAll: 'Скачать всё', more: n => `ещё ${n}`, bolTag: 'BOL',
+    annot: 'МАКЕТ на согласование: раскрытая панель, компактно. Убрано всё, что повторяет строку или степпер, пояснения (одна подсказка «?»), большой заголовок фото, имена файлов под фото, вертикальная лента, широкая строка контакта. Данные вымышленные.' },
+};
+const w = W[lang];
+// the stepper: actual dates when known, expected ones muted and marked
+const ACT = ['2026-10-22', '2026-10-22', '2026-10-23', '2026-10-23', '2026-10-26'];
+const EXP = ['', '', '', '2026-10-24', '2026-10-27'];
+document.querySelector('[data-stepper]').innerHTML = w.steps.map((name, i) => {
+  const reached = i <= STEP, current = i === STEP;
+  const when = reached ? D(ACT[i], lang) : EXP[i] ? `${D(EXP[i], lang)} · ${w.expected}` : '';
+  return `<li class="step${reached ? ' reached' : ''}${current ? ' current' : ''}"><span class="dot"></span><span class="name">${name}</span><span class="when${reached ? '' : ' expected'}">${when}</span></li>`;
+}).join('');
+// the three cards
+const hasCarrier = STEP >= 2;
+w.carrierBody = hasCarrier ? `<div><strong>Example Carrier LLC</strong></div><div class="kv"><span>${w.mc}</span><span class="mono">MC-000000</span></div><div class="kv"><span>${w.assignedOn}</span><span>${D('2026-10-23', lang)}</span></div>` : `<div>${w.awaiting}</div>`;
+w.scheduleBody = `<div class="kv"><span>${w.pickup}</span><span>${STEP >= 3 ? D('2026-10-23', lang) : `<i>${D('2026-10-24', lang)} · ${w.planned}</i>`}</span></div>`
+  + `<div class="kv"><span>${w.delivery}</span><span>${STEP >= 4 ? D('2026-10-26', lang) : `<i>${D('2026-10-27', lang)} · ${w.planned}</i>`}</span></div><div class="src">${w.perCd}</div>`;
+w.moneyBody = `${hasCarrier ? `<div class="kv"><span>${w.carrierPrice}</span><strong>$200</strong></div>` : ''}<div class="kv"><span>${w.fee}</span><strong>$35</strong></div><div class="src">${w.feeState}</div>`
+  + `<div class="chips"><span class="chip ${STEP >= 4 ? 'yes' : 'no'}">${w.paid}${STEP >= 4 ? ` · ${D('2026-10-28', lang)}` : ` · ${w.notYet}`}</span><span class="chip no">${w.invoiced} · ${w.notYet}</span></div><a class="link" href="#">${w.billing}</a>`;
+document.querySelectorAll('[data-t]').forEach(e => { const v = w[e.dataset.t]; if (typeof v === 'string') e.innerHTML = v; });
+document.querySelector('[data-tip]').title = w.tip;
+// photos: one strip, BOL first with a small tag, no file names; "+N more"
+const N = { listed: 0, assigned: 0, pickedup: 3, delivered: 14 }[state];
+const G = ['#d9cfbf', '#c9d3d8', '#b9c4b0', '#d4c2b8', '#c2c8d6', '#cfc9b0', '#bfd0cd', '#d6cbd8', '#c8bfae', '#b8c8d0'];
+const ph = document.querySelector('[data-photos]');
+if (N) { const shown = Math.min(N, 9);
+  ph.innerHTML = `<h4>${w.photosH(N)} <span class="btn-s">${w.downloadAll}</span></h4><div class="strip">` +
+    Array.from({ length: shown }, (_, i) => `<span class="thumb" style="--g:linear-gradient(135deg, ${G[i]}, ${G[(i + 3) % 10]})">${i < 2 ? `<span class="tag">${w.bolTag}</span>` : ''}</span>`).join('') +
+    (N > shown ? `<span class="thumb more">${w.more(N - shown)}</span>` : '') + '</div>';
+} else ph.remove();
+window.__panel = { panelH: Math.round(document.querySelector('[data-panel]').getBoundingClientRect().height), vh: innerHeight };
+</script>
+</body>
+</html>
