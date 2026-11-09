@@ -4,12 +4,12 @@ import { STATUS_TONES, isStatusTone, needsActionWords, assertStatusProps } from 
 
 test('the L1 vocabulary is exactly five tones', () => {
   // re-pinned on purpose (v0.1.2): the eight pipeline tones, one hue each; progress/neutral kept for older callers
-  assert.deepEqual(STATUS_TONES, ['received', 'listed', 'assigned', 'transit', 'checking', 'done', 'needs-you', 'blocked', 'progress', 'neutral']);
+  assert.deepEqual(STATUS_TONES, ['received', 'listed', 'assigned', 'transit', 'checking', 'done', 'needs-you', 'blocked', 'cancelled', 'progress', 'neutral']);
   assert.ok(isStatusTone('done')); assert.ok(!isStatusTone('warning')); assert.ok(!isStatusTone('amber'));
 });
 test('amber (needs-you) always needs the words of what to do; the others do not', () => {
   assert.ok(needsActionWords('needs-you'));
-  for (const t of ['received', 'listed', 'assigned', 'transit', 'checking', 'done', 'progress', 'blocked', 'neutral']) assert.ok(!needsActionWords(t));
+  for (const t of ['received', 'listed', 'assigned', 'transit', 'checking', 'done', 'progress', 'blocked', 'cancelled', 'neutral']) assert.ok(!needsActionWords(t));
 });
 test('assertStatusProps returns a problem list, empty when valid', () => {
   assert.deepEqual(assertStatusProps({ tone: 'done', children: 'Delivered' }), []);

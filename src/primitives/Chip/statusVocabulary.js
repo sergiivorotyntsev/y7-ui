@@ -2,7 +2,7 @@
 // amber ("needs-you") always paired with the words of what to do.
 
 // v0.1.2: the pipeline tones (one hue each, tokens/test/statusHues.test.mjs); progress and neutral kept for older callers
-export const STATUS_TONES = ['received', 'listed', 'assigned', 'transit', 'checking', 'done', 'needs-you', 'blocked', 'progress', 'neutral'];
+export const STATUS_TONES = ['received', 'listed', 'assigned', 'transit', 'checking', 'done', 'needs-you', 'blocked', 'cancelled', 'progress', 'neutral'];
 
 export const isStatusTone = (t) => STATUS_TONES.includes(t);
 export const needsActionWords = (t) => t === 'needs-you';

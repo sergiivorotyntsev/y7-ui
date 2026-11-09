@@ -970,6 +970,65 @@
           },
           "$description": "The badge (filled) and the row bar colour; one hue per status (tokens/test/statusHues.test.mjs)."
         }
+      },
+      "cancelled": {
+        "$description": "Cancelled / declined / expired: a neutral OUTLINE chip, never filled and never red (EXPSTAT ruling 1, Claude's ruling Nov 9). v0.1.2.",
+        "fg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.7059,
+              0.7216,
+              0.749
+            ],
+            "alpha": 1,
+            "hex": "#b4b8bf"
+          }
+        },
+        "bg": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.102,
+              0.1137,
+              0.1294
+            ],
+            "alpha": 1,
+            "hex": "#1a1d21"
+          }
+        },
+        "border": {
+          "$value": "{color.status.cancelled.fg}"
+        },
+        "on-fill": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.0431,
+              0.0471,
+              0.0549
+            ],
+            "alpha": 1,
+            "hex": "#0b0c0e"
+          }
+        },
+        "fill": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              0.5843,
+              0.6078,
+              0.6392
+            ],
+            "alpha": 1,
+            "hex": "#959ba3"
+          },
+          "$description": "The row bar colour for a cancelled load (the chip itself is an outline)."
+        }
       }
     },
     "feedback": {
