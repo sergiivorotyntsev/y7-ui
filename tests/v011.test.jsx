@@ -2,10 +2,12 @@
 import { describe, it, expect } from 'vitest';
 import { render } from '@testing-library/react';
 import { readFileSync } from 'node:fs';
+import { resolve } from 'node:path';
 import { StatusChip } from '../src/primitives/Chip/Chip.jsx';
 import { Icon } from '../src/primitives/shared/Icon.jsx';
 
-const src = p => readFileSync(new URL(`../${p}`, import.meta.url), 'utf8');
+// a plain path from the repo root: under jsdom `URL` is jsdom's class, which node's fs does not take as a file URL
+const src = p => readFileSync(resolve(process.cwd(), p), 'utf8');
 
 describe('v0.1.1', () => {
   it('StatusChip has a filled variant (the L1 colour as the background, its on-fill token as the text)', () => {

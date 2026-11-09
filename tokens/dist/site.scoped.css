@@ -83,14 +83,19 @@
   --y7-color-focus-ring-on-inverse: #ef3a4e;
   --y7-color-status-done-fg: #0f6e56;
   --y7-color-status-done-bg: #e1f5ee;
+  --y7-color-status-done-on-fill: #fff7ed; /** Text on a FILLED status chip (the status fg as the background), measured ≥ 4.5:1 (tokens/test/contrast.test.mjs). */
   --y7-color-status-progress-fg: #14648c;
   --y7-color-status-progress-bg: #e3eef5;
+  --y7-color-status-progress-on-fill: #fff7ed; /** Text on a FILLED status chip (the status fg as the background), measured ≥ 4.5:1 (tokens/test/contrast.test.mjs). */
   --y7-color-status-needs-you-fg: #9a3412;
   --y7-color-status-needs-you-bg: #fbeedd;
+  --y7-color-status-needs-you-on-fill: #fff7ed; /** Text on a FILLED status chip (the status fg as the background), measured ≥ 4.5:1 (tokens/test/contrast.test.mjs). */
   --y7-color-status-blocked-fg: #a90918;
   --y7-color-status-blocked-bg: #fbefec;
+  --y7-color-status-blocked-on-fill: #fff7ed; /** Text on a FILLED status chip (the status fg as the background), measured ≥ 4.5:1 (tokens/test/contrast.test.mjs). */
   --y7-color-status-neutral-fg: #5c5851;
   --y7-color-status-neutral-bg: #eee8dd;
+  --y7-color-status-neutral-on-fill: #fff7ed; /** Text on a FILLED status chip (the status fg as the background), measured ≥ 4.5:1 (tokens/test/contrast.test.mjs). */
   --y7-color-skeleton-base: rgb(5 6 7 / 0.08);
   --y7-color-skeleton-shine: rgb(5 6 7 / 0.04);
   --y7-color-scrim: rgb(5 6 7 / 0.55); /** Modal backdrop */
