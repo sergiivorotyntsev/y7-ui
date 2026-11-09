@@ -419,6 +419,20 @@
         },
         "border": {
           "$value": "{color.status.done.fg}"
+        },
+        "on-fill": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1.0,
+              0.9686,
+              0.9294
+            ],
+            "alpha": 1,
+            "hex": "#fff7ed"
+          },
+          "$description": "Text on a FILLED status chip (the status fg as the background), measured ≥ 4.5:1 (tokens/test/contrast.test.mjs)."
         }
       },
       "progress": {
@@ -451,6 +465,20 @@
         },
         "border": {
           "$value": "{color.status.progress.fg}"
+        },
+        "on-fill": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1.0,
+              0.9686,
+              0.9294
+            ],
+            "alpha": 1,
+            "hex": "#fff7ed"
+          },
+          "$description": "Text on a FILLED status chip (the status fg as the background), measured ≥ 4.5:1 (tokens/test/contrast.test.mjs)."
         }
       },
       "needs-you": {
@@ -483,6 +511,20 @@
         },
         "border": {
           "$value": "{color.status.needs-you.fg}"
+        },
+        "on-fill": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1.0,
+              0.9686,
+              0.9294
+            ],
+            "alpha": 1,
+            "hex": "#fff7ed"
+          },
+          "$description": "Text on a FILLED status chip (the status fg as the background), measured ≥ 4.5:1 (tokens/test/contrast.test.mjs)."
         }
       },
       "blocked": {
@@ -515,6 +557,20 @@
         },
         "border": {
           "$value": "{color.status.blocked.fg}"
+        },
+        "on-fill": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1.0,
+              0.9686,
+              0.9294
+            ],
+            "alpha": 1,
+            "hex": "#fff7ed"
+          },
+          "$description": "Text on a FILLED status chip (the status fg as the background), measured ≥ 4.5:1 (tokens/test/contrast.test.mjs)."
         }
       },
       "neutral": {
@@ -547,6 +603,20 @@
         },
         "border": {
           "$value": "{color.status.neutral.fg}"
+        },
+        "on-fill": {
+          "$type": "color",
+          "$value": {
+            "colorSpace": "srgb",
+            "components": [
+              1.0,
+              0.9686,
+              0.9294
+            ],
+            "alpha": 1,
+            "hex": "#fff7ed"
+          },
+          "$description": "Text on a FILLED status chip (the status fg as the background), measured ≥ 4.5:1 (tokens/test/contrast.test.mjs)."
         }
       }
     },

@@ -5,6 +5,7 @@ const PATHS = {
   chevronDown: 'M6 9l6 6 6-6',
   chevronLeft: 'M15 6l-6 6 6 6',
   chevronRight: 'M9 6l6 6-6 6',
+  refresh: 'M20 11a8 8 0 1 0-2.3 5.7M20 4v7h-7',
   search: 'M10.5 4a6.5 6.5 0 1 1 0 13 6.5 6.5 0 0 1 0-13zm9.5 16l-4.6-4.6',
   calendar: 'M4 6.5h16M7 3v4M17 3v4M5 5h14a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1z',
   filter: 'M3 5h18l-7 8v6l-4 2v-8z',

@@ -45,3 +45,12 @@
   cursor: pointer;
 }
 .remove[data-hovered] { background-color: var(--y7-color-control-bg-hover); color: var(--y7-color-text-primary); }
+
+/* v0.1.1: filled — the status colour is the background, the theme's on-fill token the text (≥ 4.5:1, measured) */
+.status[data-variant="filled"] { color: var(--chip-on); background-color: var(--chip-fg); border-color: var(--chip-fg); }
+.status[data-variant="filled"][data-tone="done"] { --chip-on: var(--y7-color-status-done-on-fill); }
+.status[data-variant="filled"][data-tone="progress"] { --chip-on: var(--y7-color-status-progress-on-fill); }
+.status[data-variant="filled"][data-tone="needs-you"] { --chip-on: var(--y7-color-status-needs-you-on-fill); }
+.status[data-variant="filled"][data-tone="blocked"] { --chip-on: var(--y7-color-status-blocked-on-fill); }
+.status[data-variant="filled"][data-tone="neutral"] { --chip-on: var(--y7-color-status-neutral-on-fill); }
+.status[data-variant="filled"] .dot { display: none; }

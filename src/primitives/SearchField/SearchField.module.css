@@ -2,6 +2,8 @@
 .control:focus-within { outline: var(--y7-focus-width) solid var(--y7-color-focus-ring); outline-offset: var(--y7-focus-offset); }
 .input {
   flex: 1;
+  block-size: 100%; /* v0.1.1: the input fills its control, so the tap target is the whole box */
+  align-self: stretch;
   min-inline-size: 0;
   border: 0;
   padding: 0;
@@ -30,3 +32,5 @@
 }
 .clear[data-hovered] { background-color: var(--y7-color-control-bg-hover); color: var(--y7-color-text-primary); }
 .field[data-empty] .clear { visibility: hidden; }
+
+@media (pointer: coarse) { .input { min-block-size: var(--y7-size-control-touch); } }

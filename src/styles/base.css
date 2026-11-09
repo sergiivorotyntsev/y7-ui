@@ -30,3 +30,7 @@
 @media (prefers-reduced-motion: reduce) {
   .y7-ui, .y7-ui * { transition-duration: 0.01ms !important; animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
 }
+
+/* v0.1.1: React Aria's autofill-only hidden <select> (aria-hidden, clipped, tabIndex -1) is not laid out at all —
+   a phone check read it as a 45x20 tap target with a 13 px font. The kit's selects are not form posts. */
+.y7-ui [data-testid="hidden-select-container"] { display: none; }

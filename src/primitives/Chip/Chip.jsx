@@ -6,14 +6,15 @@ import { assertStatusProps } from './statusVocabulary.js';
 import styles from './Chip.module.css';
 
 /**
- * StatusChip (L1): tone done | progress | needs-you | blocked | neutral, drawn from the status tokens.
+ * StatusChip (L1): tone done | progress | needs-you | blocked | neutral, drawn from the status tokens. variant 'tint'
+ * (default) or 'filled' (v0.1.1: the status colour as the background, its on-fill token as the text — the portal list).
  * The words are mandatory (colour is never the only signal); `needs-you` also requires `action`, the words of what to do.
  */
-export function StatusChip({ tone = 'neutral', action, className, children, ...rest }) {
+export function StatusChip({ tone = 'neutral', variant = 'tint', action, className, children, ...rest }) {
   const problems = assertStatusProps({ tone, children, action });
   for (const p of problems) warnOnce(`StatusChip: ${p}`);
   return (
-    <span {...rest} data-tone={tone} className={cx('y7-ui', styles.chip, styles.status, className)}>
+    <span {...rest} data-tone={tone} data-variant={variant} className={cx('y7-ui', styles.chip, styles.status, className)}>
       <span className={styles.dot} aria-hidden="true" />
       <span className={styles.words}>{children}</span>
       {action ? <span className={styles.action}>{action}</span> : null}
