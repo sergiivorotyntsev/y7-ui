@@ -36,3 +36,18 @@ test('v0.1.4 the header is sticky inside the dialog, so it stays while the body 
   assert.match(rule('.header'), /inset-block-start:\s*0/);
   assert.match(rule('.headerActions'), /display:\s*flex/);
 });
+
+// v0.1.5 (Claude, Nov 10): three things the website's own window had before it moved onto the kit Dialog.
+test('v0.1.5 the body never chains its scroll to the page (overscroll-behavior: contain)', () => {
+  assert.match(rule('.body'), /overscroll-behavior:\s*contain/);
+});
+
+test('v0.1.5 a hairline under the wide dialog\'s sticky header (tokens only)', () => {
+  assert.match(css, /\.wide \.header\s*\{[^}]*border-block-end:\s*var\(--y7-border-width-hairline\) solid var\(--y7-color-border-subtle\)/);
+});
+
+test('v0.1.5 the wide sheet at 480px and below keeps its last row clear of the home indicator (safe-area padding)', () => {
+  const phone = css.slice(css.indexOf('@media (max-width: 480px)'));
+  assert.match(phone, /\.wide \.body\s*\{[^}]*padding-block-end:\s*calc\(var\(--y7-space-lg\) \+ env\(safe-area-inset-bottom\)\)/);
+  assert.match(phone, /\.wide \.footer\s*\{[^}]*padding-block-end:\s*calc\(var\(--y7-space-xl\) \+ env\(safe-area-inset-bottom\)\)/);
+});
